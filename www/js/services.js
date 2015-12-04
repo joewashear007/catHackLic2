@@ -4,7 +4,6 @@ angular.module('app.services', [])
 
 }])
 
-.service('BlankService', [function(){
-
+.service('data', [function(){
+  
 }]);
-

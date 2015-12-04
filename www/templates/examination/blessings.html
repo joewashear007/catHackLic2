@@ -14,3 +14,32 @@
     </ion-list>
   </ion-content>
 </ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">{{(editId<0) ? 'New' : 'Edit' }} Blessing</h1>
+      <button class="button button-default button-clear" ng-click="close()">
+        <i class="icon ion-close-round"></i>
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form name="addBlessingForm" ng-submit="save()">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Blessing" ng-model="editItem.text" required >
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Category" ng-model="editItem.category">
+          </label>
+          <label class="item item-input">
+            <textarea placeholder="Comments"></textarea>
+          </label>
+        </div>
+        <div class="padding">
+          <input type="submit" class="button button-block button-positive" ng-disabled="addBlessingForm.$invalid" value="{{(editId<0) ? 'Add' : 'Save' }}" />
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>
