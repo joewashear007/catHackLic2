@@ -1,0 +1,22 @@
+<ion-view title="Review">
+  <ion-nav-buttons side="right">
+    <button class="button button-positive button-clear" ng-click="save()"><i class="icon ion-archive"></i></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header" padding="0">
+    <ion-list>
+      <div class="item item-divider"> Blessings </div>
+      <ion-item ng-repeat="item in summary.blessing"> {{item.text}} </ion-item>
+      <div class="item item-divider"> Favors </div>
+      <ion-item ng-repeat="item in summary.ask"> {{item.text}} </ion-item>
+      <div class="item item-divider"> Faults </div>
+      <ion-item ng-repeat="item in summary.kill"> {{item.text}} </ion-item>
+      <div class="item item-divider"> Thoughts </div>
+      <ion-item ng-repeat="item in summary.embrace"> {{item.text}} </ion-item>
+      <div class="item item-divider"> Resolutions </div>
+      <ion-item ng-repeat="item in summary.resolution"> {{item.text}} </ion-item>
+    </ion-list>
+    <div class="padding">
+      <button class="button button-block button-outline button-assertive" ng-click="clear()">Reset</button>
+    </div>
+  </ion-content>
+</ion-view>

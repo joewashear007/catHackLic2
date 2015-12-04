@@ -1,9 +1,48 @@
-<ion-view style="" title="Embrace">
-    <ion-content class="has-header" padding="'false'">
-        <ion-list style="">
-            <ion-item style="" menu-close="">Item 1</ion-item>
-            <ion-item style="" menu-close="">Item 2</ion-item>
-            <ion-item style="" menu-close="">Item 3</ion-item>
-        </ion-list>
-    </ion-content>
+<ion-view title="Embrace">
+  <ion-nav-buttons side="left">
+    <button class="button button-default button-clear" ui-sref="home"><i class="icon ion-home"></i></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-positive button-clear" ng-click="add()">
+      <i class="icon ion-plus-round"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="has-header" padding="0" can-swipe="1">
+    <ion-list>
+      <ion-item ng-repeat="item in items" ng-class="{'item-assertive': item.selected}" ng-click="update($index)">
+        {{item.text}}
+        <ion-option-button class="button-positive" ng-click="edit($index)"> Edit </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="delete($index)"> Delete </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>
+
+<script id="embrace.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">{{(editId<0) ? 'New' : 'Edit' }} Thought</h1>
+      <button class="button button-default button-clear" ng-click="close()">
+        <i class="icon ion-close-round"></i>
+      </button>
+    </ion-header-bar>
+    <ion-content>
+      <form name="editForm" ng-submit="save()">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Thought" ng-model="editItem.text" required >
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Category" ng-model="editItem.category">
+          </label>
+          <label class="item item-input">
+            <textarea placeholder="Comments"></textarea>
+          </label>
+        </div>
+        <div class="padding">
+          <input type="submit" class="button button-block button-positive" ng-disabled="editForm.$invalid" value="{{(editId<0) ? 'Add' : 'Save' }}" />
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>
