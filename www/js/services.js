@@ -1,9 +1,5 @@
 angular.module('app.services', [])
 
-.factory('BlankFactory', [function() {
-
-}])
-
 .service('ItemService', ['$rootScope', function($rootScope) {
   var _curItem = null;
   var _checkArea = function(area) {
@@ -16,6 +12,7 @@ angular.module('app.services', [])
       ItemService.load();
       _checkArea(area);
       _curItem[area].push(item);
+      localStorage['ItemService'] = JSON.stringify(_curItem);
       $rootScope.$broadcast('ItemService', area);
       return this;
     },
@@ -28,6 +25,7 @@ angular.module('app.services', [])
       ItemService.load();
       _checkArea(area);
       _curItem[area][index] = item;
+      localStorage['ItemService'] = JSON.stringify(_curItem);
       $rootScope.$broadcast('ItemService', area);
       return this;
     },
@@ -35,11 +33,15 @@ angular.module('app.services', [])
       ItemService.load();
       _checkArea(area);
       _curItem[area].splice(index, 1);
+      localStorage['ItemService'] = JSON.stringify(_curItem);
       $rootScope.$broadcast('ItemService', area);
       return this;
     },
     save: function() {
-      localStorage['ItemService'] = JSON.stringify(_curItem);
+      var data = JSON.parse(localStorage.getItem('history')) || [];
+      data.push(ItemService.summary());
+      localStorage['history'] = JSON.stringify(data);
+      ItemService.clear();
       return this;
     },
     load: function() {
@@ -58,6 +60,7 @@ angular.module('app.services', [])
     },
     summary: function(areas) {
       ItemService.load();
+      areas = areas || Object.keys(_curItem);
       var summary = {};
       areas.forEach( function(q) {
         if(q in _curItem)
