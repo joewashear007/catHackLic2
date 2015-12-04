@@ -1,55 +1,51 @@
 angular.module('app.services', [])
 
 .service('ItemService', ['$rootScope', function($rootScope) {
-  var _curItem = null;
+  var _curItem;
   var _checkArea = function(area) {
-    if (!(area in _curItem)) {
+    if (typeof _curItem === "undefined") {
+      ItemService.load();
+    }
+    if (area && !(area in _curItem)) {
       _curItem[area] = [];
     }
-  }
+  };
+  var _update = function(area) {
+    localStorage['ItemService'] = JSON.stringify(_curItem);
+    $rootScope.$broadcast('ItemService', area);
+  };
   var ItemService = {
     add: function(area, item) {
-      ItemService.load();
       _checkArea(area);
       _curItem[area].push(item);
-      localStorage['ItemService'] = JSON.stringify(_curItem);
-      $rootScope.$broadcast('ItemService', area);
+      _update(area);
       return this;
     },
     get: function(area) {
-      ItemService.load();
       _checkArea(area);
       return _curItem[area];
     },
     edit: function(area, index, item) {
-      ItemService.load();
       _checkArea(area);
       _curItem[area][index] = item;
-      localStorage['ItemService'] = JSON.stringify(_curItem);
-      $rootScope.$broadcast('ItemService', area);
+      _update(area);
       return this;
     },
     delete: function(area, index) {
-      ItemService.load();
       _checkArea(area);
       _curItem[area].splice(index, 1);
-      localStorage['ItemService'] = JSON.stringify(_curItem);
-      $rootScope.$broadcast('ItemService', area);
+      _update(area);
       return this;
     },
     save: function() {
       var data = JSON.parse(localStorage.getItem('history')) || [];
       data.push(ItemService.summary());
       localStorage['history'] = JSON.stringify(data);
-      ItemService.clear();
-      return this;
+      return ItemService.clear();
     },
     load: function() {
-      if (_curItem === null) {
-        _curItem = JSON.parse(localStorage.getItem('ItemService')) || {};
-        $rootScope.$broadcast('ItemService');
-      }
-      return this;
+      _curItem = JSON.parse(localStorage.getItem('ItemService')) || {};
+      return ItemService.clear();
     },
     clear: function() {
       Object.keys(_curItem).forEach(q => {
@@ -59,11 +55,10 @@ angular.module('app.services', [])
       return this;
     },
     summary: function(areas) {
-      ItemService.load();
-      areas = areas || Object.keys(_curItem);
+      _checkArea();
       var summary = {};
-      areas.forEach( function(q) {
-        if(q in _curItem)
+      (areas || Object.keys(_curItem)).forEach(function(q) {
+        if (q in _curItem)
           summary[q] = _curItem[q].filter(w => w.selected);
       });
       return summary;
