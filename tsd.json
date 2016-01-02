@@ -82,6 +82,9 @@
     },
     "cordova-ionic/cordova-ionic.d.ts": {
       "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
+    },
+    "angular-ui-router/angular-ui-router.d.ts": {
+      "commit": "fe563dff3428bac1260d1794e2c2ecf8f097535a"
     }
   }
 }

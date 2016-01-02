@@ -7,13 +7,23 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var typescript = require('gulp-tsc');
+var gulpCopy = require('gulp-copy');
+var concat = require('gulp-concat');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  src: ['./src/*.ts']
+  src: ['./src/*.ts'],
+  html: ['./src/**/*.html', './src/app.js'],
+  examin: ['./src/examin/*.js']
 };
 
-gulp.task('default', ['compile']);
+gulp.task('default', ['copy', 'examin.concat']);
+
+gulp.task('examin.concat', function() {
+  gulp.src(paths.examin)
+    .pipe(concat('examin.js'))
+    .pipe(gulp.dest('www/examin/'))
+});
 
 gulp.task('compile', function() {
   gulp.src(paths.src)
@@ -22,6 +32,14 @@ gulp.task('compile', function() {
     }))
     .pipe(gulp.dest('www/js/'))
 })
+
+gulp.task('copy', function() {
+  gulp.src(paths.html)
+    .pipe(gulpCopy('www/', {
+      prefix: 1
+    }));
+})
+
 
 
 gulp.task('sass', function(done) {
@@ -41,7 +59,9 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.src, ['compile']);
+  // gulp.watch(paths.src, ['compile']);
+  gulp.watch(paths.html, ['copy']);
+  gulp.watch(paths.examin, ['examin.concat']);
 });
 
 gulp.task('install', ['git-check'], function() {

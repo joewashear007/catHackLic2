@@ -5,3 +5,5 @@ node_modules/
 platforms/
 plugins/
 src/**/*.js
+www/lib/
+typings/
