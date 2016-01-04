@@ -15,18 +15,19 @@ module catHacklic {
       private _checkArea(area: string) { this._curItem[area] = this._curItem[area] || []; }
 
       private _update(area: string) {
-        localStorage['ItemService'] = JSON.stringify(this._curItem);
+        localStorage['ItemService'] = angular.toJson(this._curItem);
         this.$rootScope.$broadcast('ItemService', area);
       }
 
       public add(area: string, item: ExaminItem): ItemService {
         this._checkArea(area);
+        console.info(this._curItem);
         this._curItem[area].push(item);
         this._update(area);
         return this;
       }
 
-      public get(area: string): ExaminItem {
+      public get(area: string): ExaminItem[] {
         this._checkArea(area);
         return this._curItem[area];
       }

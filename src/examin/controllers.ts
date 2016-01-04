@@ -4,15 +4,18 @@ class BaseExaminCtrl {
   items: catHacklic.examin.ExaminItem[];
   modal: ionic.modal.IonicModalController;
   area: string;
-
+  public static $inject = ["$scope" ,"ItemService", "$ionicListDelegate", "$ionicModal"];
   constructor(
+    private $scope: ng.IScope,
     private itemService: catHacklic.examin.ItemService,
     private $ionicListDelegate: ionic.list.IonicListDelegate,
     private $ionicModal: ionic.modal.IonicModalService
     ) {
-    $ionicModal.fromTemplateUrl(this.area + '.html', { scope: this }).then(m => { this.modal = m; });
+    $ionicModal.fromTemplateUrl(this.area + '.html', { scope: $scope }).then(m => { this.modal = m; });
     this.editItem = {};
     this.editId = -1;
+    this.items = itemService.get(this.area);
+    console.info(this.items);
   }
 
   public close() { this.modal.hide(); }
@@ -21,6 +24,7 @@ class BaseExaminCtrl {
     this.modal.show();
   }
   public save() {
+    console.log(this.editItem, this.area);
     if (this.editId < 0) {
       this.editItem.selected = true;
       this.itemService.add(this.area, this.editItem);
@@ -44,37 +48,37 @@ class BaseExaminCtrl {
 }
 
 class BlessingCtrl extends BaseExaminCtrl {
-  constructor(itemService, $ionicListDelegate, $ionicModal) {
+  constructor($scope, itemService, $ionicListDelegate, $ionicModal) {
     this.area = "blessing";
-    super(itemService, $ionicListDelegate, $ionicModal);
+    super($scope, itemService, $ionicListDelegate, $ionicModal);
   }
 }
 
 class AskCtrl extends BaseExaminCtrl {
-  constructor(itemService, $ionicListDelegate, $ionicModal) {
+  constructor($scope, itemService, $ionicListDelegate, $ionicModal) {
     this.area = "ask";
-    super(itemService, $ionicListDelegate, $ionicModal);
+    super($scope, itemService, $ionicListDelegate, $ionicModal);
   }
 }
 
 class KillCtrl extends BaseExaminCtrl {
-  constructor(itemService, $ionicListDelegate, $ionicModal) {
+  constructor($scope, itemService, $ionicListDelegate, $ionicModal) {
     this.area = "kill";
-    super(itemService, $ionicListDelegate, $ionicModal);
+    super($scope, itemService, $ionicListDelegate, $ionicModal);
   }
 }
 
 class EmbraceCtrl extends BaseExaminCtrl {
-  constructor(itemService, $ionicListDelegate, $ionicModal) {
+  constructor($scope,itemService, $ionicListDelegate, $ionicModal) {
     this.area = "embrace";
-    super(itemService, $ionicListDelegate, $ionicModal);
+    super($scope,itemService, $ionicListDelegate, $ionicModal);
   }
 }
 
 class ResolutionCtrl extends BaseExaminCtrl {
-  constructor(itemService, $ionicListDelegate, $ionicModal) {
+  constructor($scope,itemService, $ionicListDelegate, $ionicModal) {
     this.area = "resolution";
-    super(itemService, $ionicListDelegate, $ionicModal);
+    super($scope,itemService, $ionicListDelegate, $ionicModal);
   }
 }
 

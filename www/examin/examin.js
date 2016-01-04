@@ -4,14 +4,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var BaseExaminCtrl = (function () {
-    function BaseExaminCtrl(itemService, $ionicListDelegate, $ionicModal) {
+    function BaseExaminCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
         var _this = this;
+        this.$scope = $scope;
         this.itemService = itemService;
         this.$ionicListDelegate = $ionicListDelegate;
         this.$ionicModal = $ionicModal;
-        $ionicModal.fromTemplateUrl(this.area + '.html', { scope: this }).then(function (m) { _this.modal = m; });
+        $ionicModal.fromTemplateUrl(this.area + '.html', { scope: $scope }).then(function (m) { _this.modal = m; });
         this.editItem = {};
         this.editId = -1;
+        this.items = itemService.get(this.area);
+        console.info(this.items);
     }
     BaseExaminCtrl.prototype.close = function () { this.modal.hide(); };
     BaseExaminCtrl.prototype.add = function () {
@@ -19,6 +22,7 @@ var BaseExaminCtrl = (function () {
         this.modal.show();
     };
     BaseExaminCtrl.prototype.save = function () {
+        console.log(this.editItem, this.area);
         if (this.editId < 0) {
             this.editItem.selected = true;
             this.itemService.add(this.area, this.editItem);
@@ -41,45 +45,46 @@ var BaseExaminCtrl = (function () {
         this.items[id].selected = !this.items[id].selected;
         this.itemService.edit(this.area, id, this.items[id]);
     };
+    BaseExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal"];
     return BaseExaminCtrl;
 }());
 var BlessingCtrl = (function (_super) {
     __extends(BlessingCtrl, _super);
-    function BlessingCtrl(itemService, $ionicListDelegate, $ionicModal) {
+    function BlessingCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
         this.area = "blessing";
-        _super.call(this, itemService, $ionicListDelegate, $ionicModal);
+        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
     }
     return BlessingCtrl;
 }(BaseExaminCtrl));
 var AskCtrl = (function (_super) {
     __extends(AskCtrl, _super);
-    function AskCtrl(itemService, $ionicListDelegate, $ionicModal) {
+    function AskCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
         this.area = "ask";
-        _super.call(this, itemService, $ionicListDelegate, $ionicModal);
+        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
     }
     return AskCtrl;
 }(BaseExaminCtrl));
 var KillCtrl = (function (_super) {
     __extends(KillCtrl, _super);
-    function KillCtrl(itemService, $ionicListDelegate, $ionicModal) {
+    function KillCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
         this.area = "kill";
-        _super.call(this, itemService, $ionicListDelegate, $ionicModal);
+        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
     }
     return KillCtrl;
 }(BaseExaminCtrl));
 var EmbraceCtrl = (function (_super) {
     __extends(EmbraceCtrl, _super);
-    function EmbraceCtrl(itemService, $ionicListDelegate, $ionicModal) {
+    function EmbraceCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
         this.area = "embrace";
-        _super.call(this, itemService, $ionicListDelegate, $ionicModal);
+        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
     }
     return EmbraceCtrl;
 }(BaseExaminCtrl));
 var ResolutionCtrl = (function (_super) {
     __extends(ResolutionCtrl, _super);
-    function ResolutionCtrl(itemService, $ionicListDelegate, $ionicModal) {
+    function ResolutionCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
         this.area = "resolution";
-        _super.call(this, itemService, $ionicListDelegate, $ionicModal);
+        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
     }
     return ResolutionCtrl;
 }(BaseExaminCtrl));
@@ -123,11 +128,12 @@ var catHacklic;
             }
             ItemService.prototype._checkArea = function (area) { this._curItem[area] = this._curItem[area] || []; };
             ItemService.prototype._update = function (area) {
-                localStorage['ItemService'] = JSON.stringify(this._curItem);
+                localStorage['ItemService'] = angular.toJson(this._curItem);
                 this.$rootScope.$broadcast('ItemService', area);
             };
             ItemService.prototype.add = function (area, item) {
                 this._checkArea(area);
+                console.info(this._curItem);
                 this._curItem[area].push(item);
                 this._update(area);
                 return this;
