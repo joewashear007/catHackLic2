@@ -1,22 +1,76 @@
-<ion-view title="Examination">
-    <ion-tabs class="tabs-stable tabs-icon-top">
-        <ion-tab title="Blessings" icon="ion-thumbsup" href="#/examen/blessing">
-            <ion-nav-view name="tab10"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Ask" icon="ion-plus" href="#/examen/ask">
-            <ion-nav-view name="tab11"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Kill" icon="ion-android-delete" href="#/examen/kill">
-            <ion-nav-view name="tab12"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Embrace" icon="ion-android-people" href="#/examen/embrace">
-            <ion-nav-view name="tab13"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Resolution" icon="ion-android-checkbox-outline" href="#/examen/resolution">
-            <ion-nav-view name="tab14"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Review" icon="ion-checkmark-round" href="#/examen/review">
-            <ion-nav-view name="tab15"></ion-nav-view>
-        </ion-tab>
-    </ion-tabs>
+<ion-view title="Examination - {{ctrl.area}}">
+  <ion-nav-buttons side="left">
+    <button class="button button-default button-clear" ui-sref="home"><i class="icon ion-home"></i></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-positive button-clear" ng-click="ctrl.add()"><i class="icon ion-plus-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="item in ctrl.items" ng-class="{'item-assertive': item.selected}" ng-click="ctrl.update($index)">
+        {{item.text}}
+        <ion-option-button class="button-positive" ng-click="ctrl.edit($index)"> Edit </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="ctrl.delete($index)"> Delete </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-tabs class="tabs-stable tabs-icon-top">
+    <ion-tab title="Blessings" icon="ion-thumbsup" on-select="ctrl.select('blessing')"></ion-tab>
+    <ion-tab title="Ask" icon="ion-plus" on-select="ctrl.select('ask')"></ion-tab>
+    <ion-tab title="Kill" icon="ion-android-delete" on-select="ctrl.select('kill')"></ion-tab>
+    <ion-tab title="Embrace" icon="ion-android-people" on-select="ctrl.select('embrace')"></ion-tab>
+    <ion-tab title="Resolution" icon="ion-android-checkbox-outline" on-select="ctrl.select('resolution')"></ion-tab>
+    <ion-tab title="Review" icon="ion-checkmark-round" on-select="ctrl.select('summary')">
+      <ion-view>
+        <ion-content class="has-header" padding="0">
+          <ion-list>
+            <div class="item item-divider"> Blessings </div>
+            <ion-item ng-repeat="item in ctrl.summary.blessing"> {{item.text}} </ion-item>
+            <div class="item item-divider"> Favors </div>
+            <ion-item ng-repeat="item in ctrl.summary.ask"> {{item.text}} </ion-item>
+            <div class="item item-divider"> Faults </div>
+            <ion-item ng-repeat="item in ctrl.summary.kill"> {{item.text}} </ion-item>
+            <div class="item item-divider"> Thoughts </div>
+            <ion-item ng-repeat="item in ctrl.summary.embrace"> {{item.text}} </ion-item>
+            <div class="item item-divider"> Resolutions </div>
+            <ion-item ng-repeat="item in ctrl.summary.resolution"> {{item.text}} </ion-item>
+          </ion-list>
+          <div class="padding">
+            <button class="button button-block button-outline button-assertive" ng-click="ctrl.clear()">Reset</button>
+          </div>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+  </ion-tabs>
 </ion-view>
+
+<script id="modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">{{(ctrl.editId
+        <0) ? 'New' : 'Edit' }} Blessing</h1>
+          <button class="button button-default button-clear" ng-click="ctrl.close()">
+            <i class="icon ion-close-round"></i>
+          </button>
+    </ion-header-bar>
+    <ion-content>
+      <form name="editForm" ng-submit="ctrl.save()">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Blessing" ng-model="ctrl.editItem.text" required>
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Category" ng-model="ctrl.editItem.category">
+          </label>
+          <label class="item item-input">
+            <textarea placeholder="Comments"></textarea>
+          </label>
+        </div>
+        <div class="padding">
+          <input type="submit" class="button button-block button-positive" ng-disabled="editForm.$invalid" value="{{(ctrl.editId<0) ? 'Add' : 'Save' }}" />
+        </div>
+      </form>
+    </ion-content>
+  </ion-modal-view>
+</script>

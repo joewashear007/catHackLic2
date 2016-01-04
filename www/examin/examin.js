@@ -1,27 +1,32 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var BaseExaminCtrl = (function () {
-    function BaseExaminCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
+var ExaminCtrl = (function () {
+    function ExaminCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $ionicNavBarDelegate, $state) {
         var _this = this;
         this.$scope = $scope;
         this.itemService = itemService;
         this.$ionicListDelegate = $ionicListDelegate;
         this.$ionicModal = $ionicModal;
-        $ionicModal.fromTemplateUrl(this.area + '.html', { scope: $scope }).then(function (m) { _this.modal = m; });
+        this.$ionicNavBarDelegate = $ionicNavBarDelegate;
+        this.$state = $state;
+        $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(function (m) { _this.modal = m; });
+        this.area = "blessing";
         this.editItem = {};
         this.editId = -1;
         this.items = itemService.get(this.area);
-        console.info(this.items);
+        $ionicNavBarDelegate.showBackButton(false);
     }
-    BaseExaminCtrl.prototype.close = function () { this.modal.hide(); };
-    BaseExaminCtrl.prototype.add = function () {
+    ExaminCtrl.prototype.select = function (area) {
+        console.log("Selected: ", area);
+        this.area = area;
+        this.items = this.itemService.get(this.area);
+        this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+        console.info(this.summary);
+    };
+    ExaminCtrl.prototype.close = function () { this.modal.hide(); };
+    ExaminCtrl.prototype.add = function () {
         this.editId = -1;
         this.modal.show();
     };
-    BaseExaminCtrl.prototype.save = function () {
+    ExaminCtrl.prototype.save = function () {
         console.log(this.editItem, this.area);
         if (this.editId < 0) {
             this.editItem.selected = true;
@@ -33,88 +38,29 @@ var BaseExaminCtrl = (function () {
         this.editItem = {};
         this.modal.hide();
     };
-    BaseExaminCtrl.prototype.edit = function (id) {
+    ExaminCtrl.prototype.edit = function (id) {
         this.editId = id;
         this.editItem = this.items[id];
         this.modal.show();
         this.$ionicListDelegate.closeOptionButtons();
     };
-    BaseExaminCtrl.prototype.delete = function (id) { this.itemService.delete(this.area, id); };
+    ExaminCtrl.prototype.delete = function (id) { this.itemService.delete(this.area, id); };
     ;
-    BaseExaminCtrl.prototype.update = function (id) {
+    ExaminCtrl.prototype.update = function (id) {
         this.items[id].selected = !this.items[id].selected;
         this.itemService.edit(this.area, id, this.items[id]);
     };
-    BaseExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal"];
-    return BaseExaminCtrl;
-}());
-var BlessingCtrl = (function (_super) {
-    __extends(BlessingCtrl, _super);
-    function BlessingCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
-        this.area = "blessing";
-        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
-    }
-    return BlessingCtrl;
-}(BaseExaminCtrl));
-var AskCtrl = (function (_super) {
-    __extends(AskCtrl, _super);
-    function AskCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
-        this.area = "ask";
-        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
-    }
-    return AskCtrl;
-}(BaseExaminCtrl));
-var KillCtrl = (function (_super) {
-    __extends(KillCtrl, _super);
-    function KillCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
-        this.area = "kill";
-        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
-    }
-    return KillCtrl;
-}(BaseExaminCtrl));
-var EmbraceCtrl = (function (_super) {
-    __extends(EmbraceCtrl, _super);
-    function EmbraceCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
-        this.area = "embrace";
-        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
-    }
-    return EmbraceCtrl;
-}(BaseExaminCtrl));
-var ResolutionCtrl = (function (_super) {
-    __extends(ResolutionCtrl, _super);
-    function ResolutionCtrl($scope, itemService, $ionicListDelegate, $ionicModal) {
-        this.area = "resolution";
-        _super.call(this, $scope, itemService, $ionicListDelegate, $ionicModal);
-    }
-    return ResolutionCtrl;
-}(BaseExaminCtrl));
-var ReviewCtrl = (function () {
-    function ReviewCtrl($scope, ItemService, $state) {
-        var _this = this;
-        this.$scope = $scope;
-        this.ItemService = ItemService;
-        this.$state = $state;
-        this.summary = ItemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
-        $scope.$on("ItemService", function () {
-            _this.summary = ItemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
-        });
-    }
-    ReviewCtrl.prototype.save = function () {
-        this.ItemService.save();
+    ExaminCtrl.prototype.clear = function () { this.itemService.clear(); this.summary = this.itemService.summary(); };
+    ;
+    ExaminCtrl.prototype.submit = function () {
+        this.itemService.save();
         this.$state.go('home');
     };
-    ;
-    ReviewCtrl.prototype.clear = function () { this.ItemService.clear(); };
-    ;
-    return ReviewCtrl;
+    ExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$ionicNavBarDelegate", "$state"];
+    return ExaminCtrl;
 }());
 angular.module('catHacklic.examin', [])
-    .controller('BlessingCtrl', BlessingCtrl)
-    .controller('AskCtrl', AskCtrl)
-    .controller('KillCtrl', KillCtrl)
-    .controller('EmbraceCtrl', EmbraceCtrl)
-    .controller('KillCtrl', KillCtrl)
-    .controller('ReviewCtrl', ReviewCtrl);
+    .controller('ExaminCtrl', ExaminCtrl);
 
 var catHacklic;
 (function (catHacklic) {
