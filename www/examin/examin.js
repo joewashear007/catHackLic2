@@ -1,25 +1,28 @@
 var ExaminCtrl = (function () {
-    function ExaminCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $ionicNavBarDelegate, $state) {
+    function ExaminCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
         var _this = this;
         this.$scope = $scope;
         this.itemService = itemService;
         this.$ionicListDelegate = $ionicListDelegate;
         this.$ionicModal = $ionicModal;
-        this.$ionicNavBarDelegate = $ionicNavBarDelegate;
         this.$state = $state;
         $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(function (m) { _this.modal = m; });
         this.area = "blessing";
+        "";
         this.editItem = {};
         this.editId = -1;
         this.items = itemService.get(this.area);
-        $ionicNavBarDelegate.showBackButton(false);
     }
     ExaminCtrl.prototype.select = function (area) {
         console.log("Selected: ", area);
-        this.area = area;
-        this.items = this.itemService.get(this.area);
-        this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
-        console.info(this.summary);
+        if (area == "summary") {
+            this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+            console.info(this.summary);
+        }
+        else {
+            this.area = area;
+            this.items = this.itemService.get(this.area);
+        }
     };
     ExaminCtrl.prototype.close = function () { this.modal.hide(); };
     ExaminCtrl.prototype.add = function () {
@@ -50,17 +53,32 @@ var ExaminCtrl = (function () {
         this.items[id].selected = !this.items[id].selected;
         this.itemService.edit(this.area, id, this.items[id]);
     };
-    ExaminCtrl.prototype.clear = function () { this.itemService.clear(); this.summary = this.itemService.summary(); };
+    ExaminCtrl.prototype.clear = function () { this.itemService.clear(); };
     ;
-    ExaminCtrl.prototype.submit = function () {
+    ExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+    return ExaminCtrl;
+}());
+var ReviewCtrl = (function () {
+    function ReviewCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
+        this.$scope = $scope;
+        this.itemService = itemService;
+        this.$ionicListDelegate = $ionicListDelegate;
+        this.$ionicModal = $ionicModal;
+        this.$state = $state;
+        this.summary = itemService.summary();
+    }
+    ReviewCtrl.prototype.clear = function () { this.itemService.clear(); this.summary = this.itemService.summary(); };
+    ;
+    ReviewCtrl.prototype.submit = function () {
         this.itemService.save();
         this.$state.go('home');
     };
-    ExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$ionicNavBarDelegate", "$state"];
-    return ExaminCtrl;
+    ReviewCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+    return ReviewCtrl;
 }());
 angular.module('catHacklic.examin', [])
-    .controller('ExaminCtrl', ExaminCtrl);
+    .controller('ExaminCtrl', ExaminCtrl)
+    .controller('ReviewCtrl', ReviewCtrl);
 
 var catHacklic;
 (function (catHacklic) {

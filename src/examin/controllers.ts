@@ -6,30 +6,32 @@ class ExaminCtrl {
   area: string;
   summary: any;
 
-  public static $inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$ionicNavBarDelegate", "$state"];
+  public static $inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
   constructor(
     private $scope: ng.IScope,
     private itemService: catHacklic.examin.ItemService,
     private $ionicListDelegate: ionic.list.IonicListDelegate,
     private $ionicModal: ionic.modal.IonicModalService,
-    private $ionicNavBarDelegate: ionic.navigation.IonicNavBarDelegate,
     private $state: ng.ui.IStateService
     ) {
     $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(m => { this.modal = m; });
-    this.area = "blessing";
+    this.area = "blessing"; ``
     this.editItem = {};
     this.editId = -1;
     this.items = itemService.get(this.area);
-    $ionicNavBarDelegate.showBackButton(false);
   }
 
   public select(area: string) {
     console.log("Selected: ", area);
-    this.area = area;
-    this.items = this.itemService.get(this.area);
-    this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
-    console.info(this.summary);
+    if (area == "summary") {
+      this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+      console.info(this.summary);
+    } else {
+      this.area = area;
+      this.items = this.itemService.get(this.area);
+    }
   }
+
   public close() { this.modal.hide(); }
   public add() {
     this.editId = -1;
@@ -57,8 +59,25 @@ class ExaminCtrl {
     this.items[id].selected = !this.items[id].selected;
     this.itemService.edit(this.area, id, this.items[id]);
   }
+  public clear() { this.itemService.clear(); };
+}
+
+class ReviewCtrl {
+  summary: any;
+
+  public static $inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+  constructor(
+    private $scope: ng.IScope,
+    private itemService: catHacklic.examin.ItemService,
+    private $ionicListDelegate: ionic.list.IonicListDelegate,
+    private $ionicModal: ionic.modal.IonicModalService,
+    private $state: ng.ui.IStateService
+    ) {
+    this.summary = itemService.summary();
+  }
+
   public clear() { this.itemService.clear(); this.summary = this.itemService.summary(); };
-  public submit(){
+  public submit() {
     this.itemService.save();
     this.$state.go('home');
   }
@@ -66,4 +85,5 @@ class ExaminCtrl {
 
 angular.module('catHacklic.examin', [])
   .controller('ExaminCtrl', ExaminCtrl)
+  .controller('ReviewCtrl', ReviewCtrl)
 ;

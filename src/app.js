@@ -2,7 +2,9 @@ angular.module('catHacklic', ['ionic', 'catHacklic.examin'])
     .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', { url: '/', templateUrl: 'templates/home.html' })
-        .state('examination', { url: '/examen', templateUrl: 'examin/templates/index.html', controller: 'ExaminCtrl as ctrl' });
+        .state('examin', { url: '/examen', abstract: true, template: '<ion-nav-view></ion-nav-view>' })
+        .state('examin.take', { url: '', templateUrl: 'examin/templates/index.html', controller: 'ExaminCtrl as ctrl' })
+        .state('examin.review', { url: '/review', templateUrl: 'examin/templates/review.html', controller: 'ReviewCtrl as ctrl' });
     $urlRouterProvider.otherwise('/');
 })
     .run(function ($ionicPlatform) {
