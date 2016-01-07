@@ -5,7 +5,7 @@ module catHacklic {
     export class ItemService {
       public static $inject = ["$rootScope"];
 
-      private _curItem: ExaminItem;
+      private _curItem: item;
 
       constructor(private $rootScope: ng.IRootScopeService) {
         this._curItem = JSON.parse(localStorage.getItem('ItemService')) || {};
@@ -19,7 +19,7 @@ module catHacklic {
         this.$rootScope.$broadcast('ItemService', area);
       }
 
-      public add(area: string, item: ExaminItem): ItemService {
+      public add(area: string, item: item): ItemService {
         this._checkArea(area);
         console.info(this._curItem);
         this._curItem[area].push(item);
@@ -27,12 +27,12 @@ module catHacklic {
         return this;
       }
 
-      public get(area: string): ExaminItem[] {
+      public get(area: string): item[] {
         this._checkArea(area);
         return this._curItem[area];
       }
 
-      public edit(area: string, index: number, item: ExaminItem): ItemService {
+      public edit(area: string, index: number, item: item): ItemService {
         this._checkArea(area);
         this._curItem[area][index] = item;
         this._update(area);
@@ -66,13 +66,16 @@ module catHacklic {
         return this;
       }
 
-      public summary(areas?: string[]): any {
-        var summary = {};
-        (areas || Object.keys(this._curItem)).forEach(q => {
-          if (q in this._curItem)
+      public summary(): summary {
+        var summary: summary = {};
+        for (var q in this._curItem) {
             summary[q] = this._curItem[q].filter(w => w.selected);
-        });
+        }
         return summary;
+      }
+
+      public reset() {
+        this._curItem["kill"] = starter;
       }
     }
   }

@@ -28,6 +28,7 @@
         "src/examin/controllers.ts",
         "src/examin/models.ts",
         "src/examin/services.ts",
+        "src/examin/starter.ts",
         "typings/angular-ui-router/angular-ui-router.d.ts",
         "typings/angularjs/angular.d.ts",
         "typings/cordova-ionic/cordova-ionic.d.ts",

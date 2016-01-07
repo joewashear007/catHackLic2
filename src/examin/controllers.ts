@@ -1,7 +1,7 @@
 class ExaminCtrl {
-  editItem: catHacklic.examin.ExaminItem;
+  editItem: catHacklic.examin.item;
   editId: number;
-  items: catHacklic.examin.ExaminItem[];
+  items: catHacklic.examin.item[];
   modal: ionic.modal.IonicModalController;
   area: string;
   summary: any;
@@ -16,7 +16,7 @@ class ExaminCtrl {
     ) {
     $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(m => { this.modal = m; });
     this.area = "blessing"; ``
-    this.editItem = {};
+    this.editItem = {text: ""};
     this.editId = -1;
     this.items = itemService.get(this.area);
   }
@@ -24,7 +24,7 @@ class ExaminCtrl {
   public select(area: string) {
     console.log("Selected: ", area);
     if (area == "summary") {
-      this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+      this.summary = this.itemService.summary();
       console.info(this.summary);
     } else {
       this.area = area;
@@ -45,7 +45,7 @@ class ExaminCtrl {
     } else {
       this.itemService.edit(this.area, this.editId, this.editItem);
     }
-    this.editItem = {};
+    this.editItem = { text: ""};
     this.modal.hide();
   }
   public edit(id: number) {
@@ -60,6 +60,7 @@ class ExaminCtrl {
     this.itemService.edit(this.area, id, this.items[id]);
   }
   public clear() { this.itemService.clear(); };
+  public reset() { this.itemService.reset(); this.items = this.itemService.get(this.area);   }
 }
 
 class ReviewCtrl {
@@ -76,7 +77,6 @@ class ReviewCtrl {
     this.summary = itemService.summary();
   }
 
-  public clear() { this.itemService.clear(); this.summary = this.itemService.summary(); };
   public submit() {
     this.itemService.save();
     this.$state.go('home');

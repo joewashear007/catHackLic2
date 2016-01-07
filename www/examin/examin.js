@@ -9,14 +9,14 @@ var ExaminCtrl = (function () {
         $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(function (m) { _this.modal = m; });
         this.area = "blessing";
         "";
-        this.editItem = {};
+        this.editItem = { text: "" };
         this.editId = -1;
         this.items = itemService.get(this.area);
     }
     ExaminCtrl.prototype.select = function (area) {
         console.log("Selected: ", area);
         if (area == "summary") {
-            this.summary = this.itemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+            this.summary = this.itemService.summary();
             console.info(this.summary);
         }
         else {
@@ -38,7 +38,7 @@ var ExaminCtrl = (function () {
         else {
             this.itemService.edit(this.area, this.editId, this.editItem);
         }
-        this.editItem = {};
+        this.editItem = { text: "" };
         this.modal.hide();
     };
     ExaminCtrl.prototype.edit = function (id) {
@@ -55,6 +55,7 @@ var ExaminCtrl = (function () {
     };
     ExaminCtrl.prototype.clear = function () { this.itemService.clear(); };
     ;
+    ExaminCtrl.prototype.reset = function () { this.itemService.reset(); this.items = this.itemService.get(this.area); };
     ExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
     return ExaminCtrl;
 }());
@@ -67,8 +68,6 @@ var ReviewCtrl = (function () {
         this.$state = $state;
         this.summary = itemService.summary();
     }
-    ReviewCtrl.prototype.clear = function () { this.itemService.clear(); this.summary = this.itemService.summary(); };
-    ;
     ReviewCtrl.prototype.submit = function () {
         this.itemService.save();
         this.$state.go('home');
@@ -79,6 +78,7 @@ var ReviewCtrl = (function () {
 angular.module('catHacklic.examin', [])
     .controller('ExaminCtrl', ExaminCtrl)
     .controller('ReviewCtrl', ReviewCtrl);
+
 
 var catHacklic;
 (function (catHacklic) {
@@ -136,14 +136,15 @@ var catHacklic;
                 this.$rootScope.$broadcast('ItemService');
                 return this;
             };
-            ItemService.prototype.summary = function (areas) {
-                var _this = this;
+            ItemService.prototype.summary = function () {
                 var summary = {};
-                (areas || Object.keys(this._curItem)).forEach(function (q) {
-                    if (q in _this._curItem)
-                        summary[q] = _this._curItem[q].filter(function (w) { return w.selected; });
-                });
+                for (var q in this._curItem) {
+                    summary[q] = this._curItem[q].filter(function (w) { return w.selected; });
+                }
                 return summary;
+            };
+            ItemService.prototype.reset = function () {
+                this._curItem["kill"] = starter;
             };
             ItemService.$inject = ["$rootScope"];
             return ItemService;
@@ -153,3 +154,23 @@ var catHacklic;
 })(catHacklic || (catHacklic = {}));
 angular.module('catHacklic.examin')
     .service('ItemService', catHacklic.examin.ItemService);
+
+var starter = [
+    { text: "Intentionally omitted sins during confession?", commandment: 1, },
+    { text: "Hidden a sin in confession", commandment: 1, },
+    { text: "Dispaired God's forgiveness of my sins", commandment: 1, },
+    { text: "Committed a sin expecting God's forgiven (Presumption)", commandment: 1, },
+    { text: "Neglacted my daily prayers", commandment: 1, },
+    { text: "Replaced God as higthest priority in life (with fame, fortune, money, career, pleasure, power, sex, ambition)", commandment: 1, },
+    { text: "Proposely neglacted learning about my faith", commandment: 1, },
+    { text: "Blamed God for the troubles in my life", commandment: 1, },
+    { text: "Denied any of the Catholic Church’s dogmas?", commandment: 1, },
+    { text: "Received Holy Communion in the state of mortal sin? (Desecration)", commandment: 1, },
+    { text: "Indifference/lukewarm to the God or the Faith", commandment: 1, },
+    { text: "Abandoned promises or vows made to God?", commandment: 1, },
+    { text: "Knowingly read any anti-Catholic literature?", commandment: 1, },
+    { text: "Made fun of God, Our Lady, the Saints, the Church, the Sacraments, other holy things?", commandment: 1, },
+    { text: "Mocked someone for their faith in God?", commandment: 1, },
+    { text: "Forced others to violate the tenets of their faith or conscience?", commandment: 1, },
+    { text: "Deliberately misled others about doctrine or the faith?", commandment: 1, },
+];

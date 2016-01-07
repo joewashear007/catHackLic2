@@ -1,7 +1,7 @@
 <ion-view title="Examination - {{ctrl.area}}" hide-back-button=true>
   <ion-nav-buttons side="primary">
     <button class="button button-positive button-clear" ui-sref="examin.review"><i class="icon ion-checkmark-round"></i></button>
-    <button class="button button-positive button-clear"><i class="icon ion-more"></i></button>
+    <button class="button button-positive button-clear" ng-click="ctrl.reset()"><i class="icon ion-more"></i></button>
   </ion-nav-buttons>
 
   <ion-tabs class="tabs-stable tabs-icon-top">
@@ -27,7 +27,7 @@
   <ion-content class="has-footer">
     <ion-list>
       <ion-item ng-repeat="item in ctrl.items" ng-class="{'item-assertive': item.selected}" ng-click="ctrl.update($index)">
-        {{item.text}}
+        <span class="item-spacing">{{item.text}}</span>
         <ion-option-button class="button-positive" ng-click="ctrl.edit($index)"> Edit </ion-option-button>
         <ion-option-button class="button-assertive" ng-click="ctrl.delete($index)"> Delete </ion-option-button>
       </ion-item>
@@ -36,7 +36,9 @@
   <ion-footer-bar class="bar-stable">
     <h1 class="title"></h1>
     <div class="buttons">
-      <button class="button button-positive button-clear" ng-click="ctrl.add()"><i class="icon ion-plus-round"></i></button>
+      <button class="button button-positive button-clear" ng-click="ctrl.add()">
+      <i class="icon ion-plus-round"></i>
+      </button>
     </div>
   </ion-footer-bar>
 </script>
