@@ -1,6 +1,7 @@
 module catHacklic {
   export module examin {
     export interface item {
+      id: number;
       text: string;
       selected?: boolean;
       commandment?: number;
@@ -10,6 +11,7 @@ module catHacklic {
       comments?: string;
       seriouness?: number;
       repetition?: number;
+      parent?: number;
     }
 
     export interface result {
