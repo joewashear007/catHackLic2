@@ -9,7 +9,7 @@ module catHacklic {
 
     private _userInfo: catHacklic.v1.userInfo;
     constructor() {
-      this._userInfo = JSON.parse(localStorage['v1.userinfo'] || {});
+      this._userInfo = JSON.parse(localStorage['v1.userinfo'] || "{}");
     }
 
     public get user(): catHacklic.v1.userInfo { return this._userInfo; }

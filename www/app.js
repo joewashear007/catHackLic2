@@ -56,7 +56,7 @@ var catHacklic;
     };
     var UserSerivce = (function () {
         function UserSerivce() {
-            this._userInfo = JSON.parse(localStorage['v1.userinfo'] || {});
+            this._userInfo = JSON.parse(localStorage['v1.userinfo'] || "{}");
         }
         Object.defineProperty(UserSerivce.prototype, "user", {
             get: function () { return this._userInfo; },

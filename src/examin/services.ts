@@ -3,46 +3,52 @@
 module catHacklic {
   export module examin {
     export class ItemService {
-      public static $inject = ["$rootScope", "$http", "UserSerivce"];
+      public static $inject = ["$rootScope", "$q", "$http", "UserSerivce"];
 
-      private _constrants: { };
+      private _itemsRequest: ng.IPromise<catHacklic.examin.item[]>;
+      private _constrants: {};
       private _customItems: catHacklic.examin.item[];
       private _curItem: { [key: string]: catHacklic.examin.item[] };
       private _baseQuestions: catHacklic.examin.item[];
 
       constructor(
         private $rootScope: ng.IRootScopeService,
+        private $q: ng.IQService,
         private $http: ng.IHttpService,
         private UserSerivce: catHacklic.UserSerivce
-      ) {
-        this._curItem = JSON.parse(localStorage.getItem('ItemService')) || {};
+        ) {
+        this._curItem = JSON.parse(localStorage.getItem('ItemService') || '{}');
         this.clear();
-        this._customItems = JSON.parse(localStorage['v1.exam.items'] || {});
-        $http.get<catHacklic.examin.item[]>('examin/data/questions.json').then(d => {
-          this._baseQuestions = d.data;
-        });
+        this._customItems = JSON.parse(localStorage['v1.exam.items'] || '[]');
+        this._itemsRequest = $http.get<catHacklic.examin.item[]>('examin/data/questions.json').then(q => q.data);
+        this._itemsRequest.then(d => { this._baseQuestions = d; });
       }
 
       public buildConditions(base: basicExam): conditions {
         var userInfo = this.UserSerivce.user;
         return {
-            mass: base.mass,
-            sunday: (new Date()).getDay() === 0,
-            haveKids: userInfo.haveKids,
-            haveParents: userInfo.haveParents,
-            haveSpouce: userInfo.haveSpouce,
-            hadSex: base.hadSex,
-            hadImmoralThoughs: base.hadImmoralThoughs,
-            voted: base.voted,
-            student: base.student,
-            hadArgument: base.hadArgument
+          mass: base.mass,
+          sunday: (new Date()).getDay() === 0,
+          haveKids: userInfo.haveKids,
+          haveParents: userInfo.haveParents,
+          haveSpouce: userInfo.haveSpouce,
+          hadSex: base.hadSex,
+          hadImmoralThoughs: base.hadImmoralThoughs,
+          voted: base.voted,
+          student: base.student,
+          hadArgument: base.hadArgument
         };
       }
 
       /** Return the basic exam questions */
-      public BasicExam(): item[] {
-        var customCommonItems = this._customItems.filter(q => q.commandment == -1);
-        return this._baseQuestions.filter(q => q.commandment == -1).concat(customCommonItems);
+      public BasicExam(): ng.IPromise<item[]> {
+        return this._itemsRequest.then(d => {
+          var customCommonItems = this._customItems.filter(q => q.commandment == -1);
+          var items = d.filter(q => q.commandment == -1).concat(customCommonItems);
+          console.log(items);
+          return items;
+        });
+        // return this.$q.when(items);
       }
 
       /** Returns the detailed exam computed by on the BasicExam */
@@ -55,7 +61,7 @@ module catHacklic {
        * Returns the full exam
        * @param skipDetailed Skips the exam items that were given by the detailed exam
        */
-      public FullExam(skipDetailed:boolean) :item [] {
+      public FullExam(skipDetailed: boolean): item[] {
         skipDetailed = skipDetailed || true;
         return [];
       }

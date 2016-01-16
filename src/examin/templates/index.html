@@ -26,7 +26,7 @@
 <script id="examinItemList.html" type="text/ng-template">
   <ion-content class="has-footer">
     <ion-list>
-      <ion-item ng-repeat="item in ctrl.items" ng-class="{'item-assertive': item.selected}" ng-click="ctrl.update($index)">
+      <ion-item ng-repeat="item in ctrl.baseExam" ng-class="{'item-assertive': item.selected}" ng-click="ctrl.update($index)">
         <span class="item-spacing">{{item.text}}</span>
         <ion-option-button class="button-positive" ng-click="ctrl.edit($index)"> Edit </ion-option-button>
         <ion-option-button class="button-assertive" ng-click="ctrl.delete($index)"> Delete </ion-option-button>

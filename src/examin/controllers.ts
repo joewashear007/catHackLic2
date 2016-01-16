@@ -5,6 +5,7 @@ class ExaminCtrl {
   modal: ionic.modal.IonicModalController;
   area: string;
   summary: any;
+  baseExam: catHacklic.examin.item[];
 
   public static $inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
   constructor(
@@ -15,10 +16,11 @@ class ExaminCtrl {
     private $state: ng.ui.IStateService
     ) {
     $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(m => { this.modal = m; });
-    this.area = "blessing"; ``
+    this.area = "blessing";
     this.editItem = {text: "", common: 0, id:1000};
     this.editId = -1;
     this.items = itemService.get(this.area);
+    itemService.BasicExam().then(d => this.baseExam = d);
   }
 
   public select(area: string) {
