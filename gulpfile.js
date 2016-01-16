@@ -9,14 +9,20 @@ var sh = require('shelljs');
 var typescript = require('gulp-tsc');
 var gulpCopy = require('gulp-copy');
 var concat = require('gulp-concat');
+var print = require('gulp-print');
 
 var paths = {
   dest: 'www/',
   exam: {
     dest: 'www/examin',
-    html: ['./src/**/*.html', './src/app.js'],
+    html: ['./src/examin/**/*.html'],
     data: ['./src/examin/data/**/*'],
     js: ['./src/examin/*.js']
+  },
+  app: {
+    html: [],
+    data: [],
+    js: ['./src/*.js']
   },
   sass: ['./scss/**/*.scss'],
   src: ['./src/*.ts'],
@@ -37,8 +43,17 @@ gulp.task('exam-html', () => gulp.src(paths.exam.html).pipe(gulpCopy(paths.dest,
 gulp.task('exam-data', () => gulp.src(paths.exam.data).pipe(gulpCopy(paths.dest, {
   prefix: 1
 })));
-gulp.task('exam', ['exam-js', 'exam-html', 'exam-js']);
+gulp.task('exam', ['exam-data', 'exam-html', 'exam-js']);
 
+
+gulp.task('app-js', () => gulp.src(paths.app.js).pipe(print()).pipe(concat('app.js')).pipe(gulp.dest(paths.dest)));
+gulp.task('app-html', () => gulp.src(paths.app.html).pipe(gulpCopy(paths.dest, {
+  prefix: 1
+})));
+gulp.task('app-data', () => gulp.src(paths.app.data).pipe(gulpCopy(paths.dest, {
+  prefix: 1
+})));
+gulp.task('app', ['app-data', 'app-html', 'app-js']);
 
 
 gulp.task('sass', function(done) {
@@ -62,6 +77,10 @@ gulp.task('watch', function() {
   gulp.watch(paths.exam.html, ['exam-html']);
   gulp.watch(paths.exam.js, ['exam-js']);
   gulp.watch(paths.exam.data, ['exam-data']);
+
+  gulp.watch(paths.app.html, ['app-html']);
+  gulp.watch(paths.app.js, ['app-js']);
+  gulp.watch(paths.app.data, ['app-data']);
 });
 
 gulp.task('install', ['git-check'], function() {

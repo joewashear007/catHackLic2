@@ -1,19 +1,21 @@
 [
   {
     "id": "0",
-    "commandment": "1",
-    "parent": "0",
-    "Text": "Intentionally omitted sins during confession",
-    "Condition": "confession",
+    "common": "1",
+    "commandment": "-1",
+    "parent": "-1",
+    "Text": "Argued with another",
+    "Condition": null,
     "Vice": null,
     "Catechism": ",",
     "Details": null
   },
   {
     "id": "1",
-    "commandment": "1",
-    "parent": "0",
-    "Text": "Dispaired God's forgiveness of my sins",
+    "common": "1",
+    "commandment": "-1",
+    "parent": "-1",
+    "Text": "Went to mass",
     "Condition": null,
     "Vice": null,
     "Catechism": ",",
@@ -21,8 +23,42 @@
   },
   {
     "id": "2",
+    "common": "1",
+    "commandment": "-1",
+    "parent": "-1",
+    "Text": "Gossped or talked bad about another",
+    "Condition": null,
+    "Vice": null,
+    "Catechism": ",",
+    "Details": null
+  },
+  {
+    "id": "3",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
+    "Text": "Intentionally omitted sins during confession",
+    "Condition": "confession",
+    "Vice": null,
+    "Catechism": ",",
+    "Details": null
+  },
+  {
+    "id": "4",
+    "common": "0",
+    "commandment": "1",
+    "parent": "-1",
+    "Text": "Dispaired God's forgiveness of my sins",
+    "Condition": null,
+    "Vice": null,
+    "Catechism": ",",
+    "Details": null
+  },
+  {
+    "id": "5",
+    "common": "0",
+    "commandment": "1",
+    "parent": "-1",
     "Text": "Committed a sin expecting God's forgiven ",
     "Condition": null,
     "Vice": "Presumption",
@@ -30,9 +66,10 @@
     "Details": null
   },
   {
-    "id": "3",
+    "id": "6",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Neglacted daily prayers",
     "Condition": null,
     "Vice": null,
@@ -40,9 +77,10 @@
     "Details": null
   },
   {
-    "id": "4",
+    "id": "7",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Replaced God as higthest priority in life ",
     "Condition": null,
     "Vice": null,
@@ -50,9 +88,10 @@
     "Details": "with fame, fortune, money, career, pleasure, power, sex, ambition"
   },
   {
-    "id": "5",
+    "id": "8",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Proposely neglacted learning about my faith",
     "Condition": null,
     "Vice": null,
@@ -60,9 +99,10 @@
     "Details": null
   },
   {
-    "id": "6",
+    "id": "9",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Blamed God for the troubles in my life",
     "Condition": null,
     "Vice": null,
@@ -70,9 +110,10 @@
     "Details": null
   },
   {
-    "id": "7",
+    "id": "10",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Denied any of the Catholic Church's dogmas",
     "Condition": null,
     "Vice": null,
@@ -80,9 +121,10 @@
     "Details": null
   },
   {
-    "id": "8",
+    "id": "11",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Received Holy Communion in the state of mortal sin",
     "Condition": "mass",
     "Vice": "Desecration",
@@ -90,9 +132,10 @@
     "Details": null
   },
   {
-    "id": "9",
+    "id": "12",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Indifference/lukewarm to God / the Faith",
     "Condition": null,
     "Vice": null,
@@ -100,9 +143,10 @@
     "Details": null
   },
   {
-    "id": "10",
+    "id": "13",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Abandoned promises or vows made to God",
     "Condition": null,
     "Vice": null,
@@ -110,9 +154,10 @@
     "Details": null
   },
   {
-    "id": "11",
+    "id": "14",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Knowingly read anti-Catholic literature",
     "Condition": null,
     "Vice": null,
@@ -120,9 +165,10 @@
     "Details": null
   },
   {
-    "id": "12",
+    "id": "15",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Made fun of God, Our Lady, the Saints, the Church, the Sacraments, other holy things",
     "Condition": null,
     "Vice": null,
@@ -130,9 +176,10 @@
     "Details": null
   },
   {
-    "id": "13",
+    "id": "16",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Mocked someone for their faith in God",
     "Condition": null,
     "Vice": null,
@@ -140,9 +187,10 @@
     "Details": null
   },
   {
-    "id": "14",
+    "id": "17",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Forced others to violate their faith or conscience",
     "Condition": null,
     "Vice": null,
@@ -150,9 +198,10 @@
     "Details": null
   },
   {
-    "id": "15",
+    "id": "18",
+    "common": "0",
     "commandment": "1",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Deliberately misled others about doctrine or the faith",
     "Condition": null,
     "Vice": null,
@@ -160,9 +209,10 @@
     "Details": null
   },
   {
-    "id": "16",
+    "id": "19",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Wished evil upon another",
     "Condition": null,
     "Vice": null,
@@ -170,9 +220,10 @@
     "Details": null
   },
   {
-    "id": "17",
+    "id": "20",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Used God's name in vain by profanity",
     "Condition": null,
     "Vice": null,
@@ -180,9 +231,10 @@
     "Details": null
   },
   {
-    "id": "18",
+    "id": "21",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Murmured or complained against God ",
     "Condition": null,
     "Vice": "blasphemy",
@@ -190,9 +242,10 @@
     "Details": null
   },
   {
-    "id": "19",
+    "id": "22",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Watched TV, movies, or listened to music that treated God, the Church, the saints, or sacred things irreverently?",
     "Condition": "media",
     "Vice": null,
@@ -200,9 +253,10 @@
     "Details": null
   },
   {
-    "id": "20",
+    "id": "23",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Belittled others with my speech",
     "Condition": null,
     "Vice": null,
@@ -210,9 +264,10 @@
     "Details": null
   },
   {
-    "id": "21",
+    "id": "24",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Behaved disrespectfully in Church",
     "Condition": "mass",
     "Vice": null,
@@ -220,9 +275,10 @@
     "Details": null
   },
   {
-    "id": "22",
+    "id": "25",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Misused places or things set apart for the worship of God",
     "Condition": null,
     "Vice": null,
@@ -230,9 +286,10 @@
     "Details": null
   },
   {
-    "id": "23",
+    "id": "26",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Used foul, vulgar, suggestive, or obscene speech",
     "Condition": null,
     "Vice": null,
@@ -240,9 +297,10 @@
     "Details": null
   },
   {
-    "id": "24",
+    "id": "27",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Angered others so as to make them swear",
     "Condition": null,
     "Vice": null,
@@ -250,9 +308,10 @@
     "Details": null
   },
   {
-    "id": "25",
+    "id": "28",
+    "common": "0",
     "commandment": "2",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Watched movies or listened music that contained foul language",
     "Condition": "media",
     "Vice": null,
@@ -260,9 +319,10 @@
     "Details": null
   },
   {
-    "id": "26",
+    "id": "29",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Shown disrespect by leaving Mass early, not paying attention or not joining in the prayers",
     "Condition": "mass",
     "Vice": null,
@@ -270,9 +330,10 @@
     "Details": null
   },
   {
-    "id": "27",
+    "id": "30",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Did I do unnecessary work on Sunday which could have been done the day before",
     "Condition": "sunday",
     "Vice": null,
@@ -280,9 +341,10 @@
     "Details": null
   },
   {
-    "id": "28",
+    "id": "31",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Stingy in my support for the Church",
     "Condition": null,
     "Vice": null,
@@ -290,9 +352,10 @@
     "Details": null
   },
   {
-    "id": "29",
+    "id": "32",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Missed Mass on Sunday or a Holy Day of Obligation without a serious reason",
     "Condition": "sunday",
     "Vice": null,
@@ -300,9 +363,10 @@
     "Details": null
   },
   {
-    "id": "30",
+    "id": "33",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Intentional failure to fast or abstain on appointed days",
     "Condition": "Day of Fast / Abstain",
     "Vice": null,
@@ -310,9 +374,10 @@
     "Details": null
   },
   {
-    "id": "31",
+    "id": "34",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Late for Mass through my own negligence",
     "Condition": "mass",
     "Vice": null,
@@ -320,9 +385,10 @@
     "Details": null
   },
   {
-    "id": "32",
+    "id": "35",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Refused to help others attend Mass on Sundays and Holy Days",
     "Condition": "mass",
     "Vice": null,
@@ -330,9 +396,10 @@
     "Details": null
   },
   {
-    "id": "33",
+    "id": "36",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Shopped or benefitted from unnecessary service on Sundays and Holy Days",
     "Condition": "sunday",
     "Vice": null,
@@ -340,9 +407,10 @@
     "Details": null
   },
   {
-    "id": "34",
+    "id": "37",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to devoted time to my family and loved ones on Sundays and Holy Days",
     "Condition": "sunday",
     "Vice": null,
@@ -350,9 +418,10 @@
     "Details": null
   },
   {
-    "id": "35",
+    "id": "38",
+    "common": "0",
     "commandment": "3",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to set time aside each day for personal prayer to God",
     "Condition": null,
     "Vice": null,
@@ -360,9 +429,10 @@
     "Details": null
   },
   {
-    "id": "36",
+    "id": "39",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Showed little or no interest in my children's faith and practice of it",
     "Condition": "haveKids",
     "Vice": null,
@@ -370,9 +440,10 @@
     "Details": null
   },
   {
-    "id": "37",
+    "id": "40",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Showed disrespect for those in authority, government, or church",
     "Condition": null,
     "Vice": null,
@@ -380,9 +451,10 @@
     "Details": null
   },
   {
-    "id": "38",
+    "id": "41",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Disobedient and/or disrespectful to my parents or guardians",
     "Condition": "haveParents",
     "Vice": null,
@@ -390,9 +462,10 @@
     "Details": null
   },
   {
-    "id": "39",
+    "id": "42",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Neglected to help with household chores",
     "Condition": null,
     "Vice": null,
@@ -400,9 +473,10 @@
     "Details": null
   },
   {
-    "id": "40",
+    "id": "43",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Caused unnecessary worry and anxiety by my attitude, behavior, moods, etc.",
     "Condition": null,
     "Vice": null,
@@ -410,9 +484,10 @@
     "Details": null
   },
   {
-    "id": "41",
+    "id": "44",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Serious failure to care for aged parents",
     "Condition": "haveParents",
     "Vice": null,
@@ -420,9 +495,10 @@
     "Details": null
   },
   {
-    "id": "42",
+    "id": "45",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Serious neglect of the duties of one's state in life",
     "Condition": null,
     "Vice": null,
@@ -430,9 +506,10 @@
     "Details": null
   },
   {
-    "id": "43",
+    "id": "46",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Mistreated my spouce or children",
     "Condition": "haveSpouce, haveKids",
     "Vice": null,
@@ -440,9 +517,10 @@
     "Details": null
   },
   {
-    "id": "44",
+    "id": "47",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Allowed spouce / children to neglect their religious duties",
     "Condition": "haveSpouce, haveKids",
     "Vice": null,
@@ -450,9 +528,10 @@
     "Details": null
   },
   {
-    "id": "45",
+    "id": "48",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failer to discipline children",
     "Condition": "haveKids",
     "Vice": null,
@@ -460,9 +539,10 @@
     "Details": null
   },
   {
-    "id": "46",
+    "id": "49",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Disobeyed the reasonable demands of my teachers",
     "Condition": "stundent",
     "Vice": null,
@@ -470,9 +550,10 @@
     "Details": null
   },
   {
-    "id": "47",
+    "id": "50",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Voted for, promoted, or advanced the agenda of politicians who hold positions contrary to the common good, religious freedom, or the moral law?",
     "Condition": "vote",
     "Vice": null,
@@ -480,9 +561,10 @@
     "Details": null
   },
   {
-    "id": "48",
+    "id": "51",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to provide a good example of a virtuous life to others in my care",
     "Condition": null,
     "Vice": null,
@@ -490,9 +572,10 @@
     "Details": null
   },
   {
-    "id": "49",
+    "id": "52",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to love and sacrifice for my family",
     "Condition": "haveSpouce, haveKids",
     "Vice": null,
@@ -500,9 +583,10 @@
     "Details": null
   },
   {
-    "id": "50",
+    "id": "53",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Encouraged others to disrespect legitimate authority",
     "Condition": null,
     "Vice": null,
@@ -510,9 +594,10 @@
     "Details": null
   },
   {
-    "id": "51",
+    "id": "54",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to accept my parents' advice or admonishments",
     "Condition": "haveParents",
     "Vice": null,
@@ -520,9 +605,10 @@
     "Details": null
   },
   {
-    "id": "52",
+    "id": "55",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to perform my civic duties such as voting, paying taxes, and service requirements such as jury duty, or just obligatory military service",
     "Condition": "vote",
     "Vice": null,
@@ -530,9 +616,10 @@
     "Details": null
   },
   {
-    "id": "53",
+    "id": "56",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to promote the just treatment of the poor, indigent, or migrants in society",
     "Condition": null,
     "Vice": null,
@@ -540,9 +627,10 @@
     "Details": null
   },
   {
-    "id": "54",
+    "id": "57",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed in due reverence to aged persons",
     "Condition": null,
     "Vice": null,
@@ -550,9 +638,10 @@
     "Details": null
   },
   {
-    "id": "55",
+    "id": "58",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Mistreated my spouse or my children",
     "Condition": "haveSpouce, haveKids",
     "Vice": null,
@@ -560,9 +649,10 @@
     "Details": null
   },
   {
-    "id": "56",
+    "id": "59",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Scandalized spouse or children by cursing or swearing in front of them",
     "Condition": "haveSpouce, haveKids",
     "Vice": null,
@@ -570,9 +660,10 @@
     "Details": null
   },
   {
-    "id": "57",
+    "id": "60",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Consent, recommend, advise, approve, support or have an abortion",
     "Condition": null,
     "Vice": null,
@@ -580,9 +671,10 @@
     "Details": null
   },
   {
-    "id": "58",
+    "id": "61",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Committed an act of violence or abuse (physical, sexual, emotional or verbal)?",
     "Condition": null,
     "Vice": null,
@@ -590,9 +682,10 @@
     "Details": null
   },
   {
-    "id": "59",
+    "id": "62",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Endangered the lives of others by reckless driving or by driving under the influence of drugs or alcohol",
     "Condition": null,
     "Vice": null,
@@ -600,9 +693,10 @@
     "Details": null
   },
   {
-    "id": "60",
+    "id": "63",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Disrespect for my body by neglecting to take care of my own health",
     "Condition": null,
     "Vice": null,
@@ -610,9 +704,10 @@
     "Details": null
   },
   {
-    "id": "61",
+    "id": "64",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Mean or unjust to anyone",
     "Condition": null,
     "Vice": null,
@@ -620,9 +715,10 @@
     "Details": null
   },
   {
-    "id": "62",
+    "id": "65",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Held a grudge or sought revenge against someone who wronged me",
     "Condition": null,
     "Vice": null,
@@ -630,9 +726,10 @@
     "Details": null
   },
   {
-    "id": "63",
+    "id": "66",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Pointed out others' faults and mistakes while ignoring my own",
     "Condition": null,
     "Vice": null,
@@ -640,9 +737,10 @@
     "Details": null
   },
   {
-    "id": "64",
+    "id": "67",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Complained more than I complimented",
     "Condition": null,
     "Vice": null,
@@ -650,9 +748,10 @@
     "Details": null
   },
   {
-    "id": "65",
+    "id": "68",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Ungrateful for what other people do for me",
     "Condition": null,
     "Vice": null,
@@ -660,9 +759,10 @@
     "Details": null
   },
   {
-    "id": "66",
+    "id": "69",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Tear people down rather than encourage them",
     "Condition": null,
     "Vice": null,
@@ -670,9 +770,10 @@
     "Details": null
   },
   {
-    "id": "67",
+    "id": "70",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Prejudiced against people because of their color, language or ethnic-religious background",
     "Condition": null,
     "Vice": null,
@@ -680,9 +781,10 @@
     "Details": null
   },
   {
-    "id": "68",
+    "id": "71",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Knowingly voting for someone who is pro-abortion",
     "Condition": "vote",
     "Vice": null,
@@ -690,9 +792,10 @@
     "Details": null
   },
   {
-    "id": "69",
+    "id": "72",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willfully leaded another into serious sin",
     "Condition": null,
     "Vice": null,
@@ -700,9 +803,10 @@
     "Details": null
   },
   {
-    "id": "70",
+    "id": "73",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willfully injured or tried to hurt another person",
     "Condition": null,
     "Vice": null,
@@ -710,9 +814,10 @@
     "Details": null
   },
   {
-    "id": "71",
+    "id": "74",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Drove dangerously or recklessly",
     "Condition": null,
     "Vice": null,
@@ -720,9 +825,10 @@
     "Details": null
   },
   {
-    "id": "72",
+    "id": "75",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willful drunkenness",
     "Condition": "alcohol",
     "Vice": null,
@@ -730,9 +836,10 @@
     "Details": null
   },
   {
-    "id": "73",
+    "id": "76",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Excessive tattoos",
     "Condition": null,
     "Vice": null,
@@ -740,9 +847,10 @@
     "Details": null
   },
   {
-    "id": "74",
+    "id": "77",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Excessive body piercing",
     "Condition": null,
     "Vice": null,
@@ -750,9 +858,10 @@
     "Details": null
   },
   {
-    "id": "75",
+    "id": "78",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Serious entertainment of suicidal thoughts",
     "Condition": null,
     "Vice": null,
@@ -760,9 +869,10 @@
     "Details": null
   },
   {
-    "id": "76",
+    "id": "79",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Intentionally placed temptation before the weak",
     "Condition": null,
     "Vice": null,
@@ -770,7 +880,8 @@
     "Details": null
   },
   {
-    "id": "77",
+    "id": "80",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Quarreled with any one",
@@ -780,7 +891,8 @@
     "Details": null
   },
   {
-    "id": "78",
+    "id": "81",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Cursed anyone or otherwise wished evil on him",
@@ -790,7 +902,8 @@
     "Details": null
   },
   {
-    "id": "79",
+    "id": "82",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Refused to speak to someone or be reconciled",
@@ -800,9 +913,10 @@
     "Details": null
   },
   {
-    "id": "80",
+    "id": "83",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Lied about anyone",
     "Condition": null,
     "Vice": "calumny",
@@ -810,9 +924,10 @@
     "Details": null
   },
   {
-    "id": "81",
+    "id": "84",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Taken pleasure in anyone's misfortune",
     "Condition": null,
     "Vice": null,
@@ -820,9 +935,10 @@
     "Details": null
   },
   {
-    "id": "82",
+    "id": "85",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Rash judged anyone of a serious sin",
     "Condition": null,
     "Vice": null,
@@ -830,9 +946,10 @@
     "Details": null
   },
   {
-    "id": "83",
+    "id": "86",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Engaged in gossip or spread scandal",
     "Condition": null,
     "Vice": "detraction",
@@ -840,9 +957,10 @@
     "Details": null
   },
   {
-    "id": "84",
+    "id": "87",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Lent an ear to scandal about my neighbor",
     "Condition": null,
     "Vice": null,
@@ -850,9 +968,10 @@
     "Details": null
   },
   {
-    "id": "85",
+    "id": "88",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Been jealous or envious of anyone",
     "Condition": null,
     "Vice": null,
@@ -860,7 +979,8 @@
     "Details": null
   },
   {
-    "id": "86",
+    "id": "89",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Verbally or emotionally abused another person",
@@ -870,7 +990,8 @@
     "Details": null
   },
   {
-    "id": "87",
+    "id": "90",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Unjustly threatened another person with bodily harm",
@@ -880,7 +1001,8 @@
     "Details": null
   },
   {
-    "id": "88",
+    "id": "91",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Purposely provoked another by teasing or nagging",
@@ -890,9 +1012,10 @@
     "Details": null
   },
   {
-    "id": "89",
+    "id": "92",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Over-eaten",
     "Condition": null,
     "Vice": null,
@@ -900,9 +1023,10 @@
     "Details": null
   },
   {
-    "id": "90",
+    "id": "93",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Helped another to commit a mortal sin (through advice, driving them somewhere, etc.)",
     "Condition": null,
     "Vice": null,
@@ -910,7 +1034,8 @@
     "Details": null
   },
   {
-    "id": "91",
+    "id": "94",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Indulged in serious anger",
@@ -920,7 +1045,8 @@
     "Details": null
   },
   {
-    "id": "92",
+    "id": "95",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Been unforgiving to others, when mercy or pardon was requested",
@@ -930,7 +1056,8 @@
     "Details": null
   },
   {
-    "id": "93",
+    "id": "96",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Sought revenge or hoped something bad would happen to someone",
@@ -940,7 +1067,8 @@
     "Details": null
   },
   {
-    "id": "94",
+    "id": "97",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Failed to turn the other cheek� or love my enemies",
@@ -950,9 +1078,10 @@
     "Details": null
   },
   {
-    "id": "95",
+    "id": "98",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to provide proper burial for the dead",
     "Condition": null,
     "Vice": null,
@@ -960,9 +1089,10 @@
     "Details": null
   },
   {
-    "id": "96",
+    "id": "99",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to show respect for the dead or their bodies",
     "Condition": null,
     "Vice": null,
@@ -970,9 +1100,10 @@
     "Details": null
   },
   {
-    "id": "97",
+    "id": "100",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Advocated unjust punishments or capital punishment where it is not just",
     "Condition": null,
     "Vice": null,
@@ -980,7 +1111,8 @@
     "Details": null
   },
   {
-    "id": "98",
+    "id": "101",
+    "common": "0",
     "commandment": "5",
     "parent": "0",
     "Text": "Mocked, intimidated or belittled someone",
@@ -990,9 +1122,10 @@
     "Details": null
   },
   {
-    "id": "99",
+    "id": "102",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to correct in Charity",
     "Condition": null,
     "Vice": null,
@@ -1000,9 +1133,10 @@
     "Details": null
   },
   {
-    "id": "100",
+    "id": "103",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Harmed anyone's soul, especially children, by giving scandal through bad example",
     "Condition": null,
     "Vice": null,
@@ -1010,9 +1144,10 @@
     "Details": null
   },
   {
-    "id": "101",
+    "id": "104",
+    "common": "0",
     "commandment": "5",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Harmed my own soul by intentionally and without necessity exposing it to temptations",
     "Condition": "media",
     "Vice": null,
@@ -1020,9 +1155,10 @@
     "Details": "bad TV, bad music, beaches, etc."
   },
   {
-    "id": "102",
+    "id": "105",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Viewed pornographic material (magazines, videos, internet, hot-lines)",
     "Condition": "sex",
     "Vice": null,
@@ -1030,9 +1166,10 @@
     "Details": null
   },
   {
-    "id": "103",
+    "id": "106",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Not avoided the occasions of sin (persons or places) which would tempt me to be unfaithful to my spouse or to my own chastity",
     "Condition": null,
     "Vice": null,
@@ -1040,9 +1177,10 @@
     "Details": null
   },
   {
-    "id": "104",
+    "id": "107",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Encouraged and/or entertained impure thoughts and desires",
     "Condition": null,
     "Vice": null,
@@ -1050,9 +1188,10 @@
     "Details": null
   },
   {
-    "id": "105",
+    "id": "108",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Told or listened to dirty jokes",
     "Condition": null,
     "Vice": null,
@@ -1060,9 +1199,10 @@
     "Details": null
   },
   {
-    "id": "106",
+    "id": "109",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Dressing or acting in a manner intended to cause arousal in another",
     "Condition": "sex",
     "Vice": null,
@@ -1070,9 +1210,10 @@
     "Details": "Excludes spouses"
   },
   {
-    "id": "107",
+    "id": "110",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Kissing or touching another passionately for the purpose of arousal",
     "Condition": "sex",
     "Vice": null,
@@ -1080,9 +1221,10 @@
     "Details": "Excludes spouses"
   },
   {
-    "id": "108",
+    "id": "111",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Allowing another to kiss or touch you in a sexual manner",
     "Condition": "sex",
     "Vice": null,
@@ -1090,9 +1232,10 @@
     "Details": "Excludes spouses"
   },
   {
-    "id": "109",
+    "id": "112",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Oral Sex (oral stimulation permitted as foreplay in marriage - ejaculation must be vaginal)",
     "Condition": "sex",
     "Vice": null,
@@ -1100,9 +1243,10 @@
     "Details": null
   },
   {
-    "id": "110",
+    "id": "113",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Anal sex or other degrading sex practices",
     "Condition": "sex",
     "Vice": null,
@@ -1110,9 +1254,10 @@
     "Details": null
   },
   {
-    "id": "111",
+    "id": "114",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willful divorce or desertion",
     "Condition": null,
     "Vice": null,
@@ -1120,9 +1265,10 @@
     "Details": null
   },
   {
-    "id": "112",
+    "id": "115",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Destroyed the innocence of another by seducing or introducing them to immorality",
     "Condition": "sex",
     "Vice": null,
@@ -1130,9 +1276,10 @@
     "Details": null
   },
   {
-    "id": "113",
+    "id": "116",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Lust in the heart (if I could I would)?",
     "Condition": "sex",
     "Vice": null,
@@ -1140,9 +1287,10 @@
     "Details": null
   },
   {
-    "id": "114",
+    "id": "117",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Committed masturbation or otherwise sinned impurely with myself",
     "Condition": "sex",
     "Vice": null,
@@ -1150,9 +1298,10 @@
     "Details": null
   },
   {
-    "id": "115",
+    "id": "118",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Used indecent language or told indecent stories",
     "Condition": null,
     "Vice": null,
@@ -1160,9 +1309,10 @@
     "Details": null
   },
   {
-    "id": "116",
+    "id": "119",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willingly listened to indecent stories",
     "Condition": "sex",
     "Vice": null,
@@ -1170,9 +1320,10 @@
     "Details": null
   },
   {
-    "id": "117",
+    "id": "120",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Boasted of my sins",
     "Condition": null,
     "Vice": null,
@@ -1180,9 +1331,10 @@
     "Details": null
   },
   {
-    "id": "118",
+    "id": "121",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Used an artificial means of birth control",
     "Condition": "sex",
     "Vice": null,
@@ -1190,9 +1342,10 @@
     "Details": null
   },
   {
-    "id": "119",
+    "id": "122",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Participated in immoral techniques for in vitro fertilization or artificial insemination",
     "Condition": null,
     "Vice": null,
@@ -1200,9 +1353,10 @@
     "Details": null
   },
   {
-    "id": "120",
+    "id": "123",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Deprived my spouse of the marital right, without just cause",
     "Condition": null,
     "Vice": null,
@@ -1210,9 +1364,10 @@
     "Details": null
   },
   {
-    "id": "121",
+    "id": "124",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Claimed my own marital right without concern for my spouse",
     "Condition": "sex",
     "Vice": null,
@@ -1220,9 +1375,10 @@
     "Details": null
   },
   {
-    "id": "122",
+    "id": "125",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Deliberately caused male climax outside of normal sexual intercourse ",
     "Condition": "sex",
     "Vice": null,
@@ -1230,9 +1386,10 @@
     "Details": null
   },
   {
-    "id": "123",
+    "id": "126",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Purchased, viewed, or made use of pornography",
     "Condition": "sex",
     "Vice": null,
@@ -1240,9 +1397,10 @@
     "Details": null
   },
   {
-    "id": "124",
+    "id": "127",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Watched movies and television that involve sex and nudity",
     "Condition": "sex, media",
     "Vice": null,
@@ -1250,9 +1408,10 @@
     "Details": null
   },
   {
-    "id": "125",
+    "id": "128",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Listened to music or jokes that are harmful to purity",
     "Condition": "media",
     "Vice": null,
@@ -1260,9 +1419,10 @@
     "Details": null
   },
   {
-    "id": "126",
+    "id": "129",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Had sexual relations with someone of the opposite sex when neither of us is married",
     "Condition": "sex",
     "Vice": "fornication",
@@ -1270,9 +1430,10 @@
     "Details": null
   },
   {
-    "id": "127",
+    "id": "130",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Had sexual relations with a relative or in-law",
     "Condition": "sex",
     "Vice": "incest",
@@ -1280,9 +1441,10 @@
     "Details": null
   },
   {
-    "id": "128",
+    "id": "131",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Had sexual relations with someone who is married, or with someone other than my spouse",
     "Condition": "sex",
     "Vice": "adultery",
@@ -1290,9 +1452,10 @@
     "Details": null
   },
   {
-    "id": "129",
+    "id": "132",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Engaged in homosexual activity",
     "Condition": "sex",
     "Vice": null,
@@ -1300,9 +1463,10 @@
     "Details": null
   },
   {
-    "id": "130",
+    "id": "133",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Preyed upon children or youth for my sexual pleasure",
     "Condition": "sex",
     "Vice": null,
@@ -1310,9 +1474,10 @@
     "Details": null
   },
   {
-    "id": "131",
+    "id": "134",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Engaged in prostitution, or paid for the services of a prostitute",
     "Condition": "sex",
     "Vice": null,
@@ -1320,9 +1485,10 @@
     "Details": null
   },
   {
-    "id": "132",
+    "id": "135",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Made uninvited and unwelcome sexual advances toward another",
     "Condition": "sex",
     "Vice": null,
@@ -1330,9 +1496,10 @@
     "Details": null
   },
   {
-    "id": "133",
+    "id": "136",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Read sexually explicit material",
     "Condition": "media, sex",
     "Vice": null,
@@ -1340,9 +1507,10 @@
     "Details": null
   },
   {
-    "id": "134",
+    "id": "137",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Violated someone's privacy by spying on them",
     "Condition": null,
     "Vice": null,
@@ -1350,9 +1518,10 @@
     "Details": null
   },
   {
-    "id": "135",
+    "id": "138",
+    "common": "0",
     "commandment": "6",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to averted my eyes when someone else is dressed immodestly",
     "Condition": "sex",
     "Vice": null,
@@ -1360,9 +1529,10 @@
     "Details": null
   },
   {
-    "id": "136",
+    "id": "139",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Stolen any object, committed any shoplifting, or cheated anyone of their money",
     "Condition": null,
     "Vice": null,
@@ -1370,9 +1540,10 @@
     "Details": null
   },
   {
-    "id": "137",
+    "id": "140",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Knowingly deceive someone in business or commit fraud",
     "Condition": null,
     "Vice": null,
@@ -1380,9 +1551,10 @@
     "Details": null
   },
   {
-    "id": "138",
+    "id": "141",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Shown disrespect or even contempt for other people's property",
     "Condition": null,
     "Vice": null,
@@ -1390,9 +1562,10 @@
     "Details": null
   },
   {
-    "id": "139",
+    "id": "142",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Preformed acts of vandalism",
     "Condition": null,
     "Vice": null,
@@ -1400,9 +1573,10 @@
     "Details": null
   },
   {
-    "id": "140",
+    "id": "143",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Greedy or envious of another's goods",
     "Condition": null,
     "Vice": null,
@@ -1410,9 +1584,10 @@
     "Details": null
   },
   {
-    "id": "141",
+    "id": "144",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Distracted by money",
     "Condition": null,
     "Vice": null,
@@ -1420,9 +1595,10 @@
     "Details": "Let financial and material concerns or the desire for comfort override my duty to God, to Church, to my family or my own spiritual well-being"
   },
   {
-    "id": "142",
+    "id": "145",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willfully destroying or defacing another's property",
     "Condition": null,
     "Vice": null,
@@ -1430,9 +1606,10 @@
     "Details": null
   },
   {
-    "id": "143",
+    "id": "146",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Buying, selling, receiving or concealing items known to be stolen",
     "Condition": null,
     "Vice": null,
@@ -1440,9 +1617,10 @@
     "Details": null
   },
   {
-    "id": "144",
+    "id": "147",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Willful failure to make restitution",
     "Condition": null,
     "Vice": null,
@@ -1450,9 +1628,10 @@
     "Details": null
   },
   {
-    "id": "145",
+    "id": "148",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Excessive gambling",
     "Condition": null,
     "Vice": null,
@@ -1460,9 +1639,10 @@
     "Details": null
   },
   {
-    "id": "146",
+    "id": "149",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Defrauding workers of their wages",
     "Condition": "boss",
     "Vice": null,
@@ -1470,9 +1650,10 @@
     "Details": null
   },
   {
-    "id": "147",
+    "id": "150",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Padding expense or per diem accounts",
     "Condition": null,
     "Vice": null,
@@ -1480,9 +1661,10 @@
     "Details": null
   },
   {
-    "id": "148",
+    "id": "151",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Taking advantage of the poor, simple, inexperienced or less fortunate",
     "Condition": null,
     "Vice": null,
@@ -1490,9 +1672,10 @@
     "Details": null
   },
   {
-    "id": "149",
+    "id": "152",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Denying help to the poor, needy or destitute when able to help them easily",
     "Condition": null,
     "Vice": null,
@@ -1500,9 +1683,10 @@
     "Details": null
   },
   {
-    "id": "150",
+    "id": "153",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Defrauding creditors",
     "Condition": null,
     "Vice": null,
@@ -1510,9 +1694,10 @@
     "Details": null
   },
   {
-    "id": "151",
+    "id": "154",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Bribery or taking bribes",
     "Condition": null,
     "Vice": null,
@@ -1520,9 +1705,10 @@
     "Details": null
   },
   {
-    "id": "152",
+    "id": "155",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Blackmail",
     "Condition": null,
     "Vice": null,
@@ -1530,9 +1716,10 @@
     "Details": null
   },
   {
-    "id": "153",
+    "id": "156",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Excessive waste or expense",
     "Condition": null,
     "Vice": null,
@@ -1540,9 +1727,10 @@
     "Details": null
   },
   {
-    "id": "154",
+    "id": "157",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Violating copyrights",
     "Condition": null,
     "Vice": null,
@@ -1550,9 +1738,10 @@
     "Details": null
   },
   {
-    "id": "155",
+    "id": "158",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Pirating computer software or media",
     "Condition": null,
     "Vice": null,
@@ -1560,9 +1749,10 @@
     "Details": null
   },
   {
-    "id": "156",
+    "id": "159",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Serious cruelty to animals",
     "Condition": null,
     "Vice": null,
@@ -1570,9 +1760,10 @@
     "Details": null
   },
   {
-    "id": "157",
+    "id": "160",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Refused or neglected to pay any debts",
     "Condition": null,
     "Vice": null,
@@ -1580,9 +1771,10 @@
     "Details": null
   },
   {
-    "id": "158",
+    "id": "161",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Neglected my duties or been slothful in my work",
     "Condition": null,
     "Vice": null,
@@ -1590,9 +1782,10 @@
     "Details": null
   },
   {
-    "id": "159",
+    "id": "162",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Ignored that God has provided me with money so that I might use it to benefit others, as well as for my own legitimate needs",
     "Condition": null,
     "Vice": null,
@@ -1600,9 +1793,10 @@
     "Details": null
   },
   {
-    "id": "160",
+    "id": "163",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Lived with a consumer mentality",
     "Condition": null,
     "Vice": null,
@@ -1610,9 +1804,10 @@
     "Details": null
   },
   {
-    "id": "161",
+    "id": "164",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Cheated on a test, taxes, sports, games, or in business",
     "Condition": null,
     "Vice": null,
@@ -1620,9 +1815,10 @@
     "Details": null
   },
   {
-    "id": "162",
+    "id": "165",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Make a false claim to an insurance company",
     "Condition": null,
     "Vice": null,
@@ -1630,9 +1826,10 @@
     "Details": null
   },
   {
-    "id": "163",
+    "id": "166",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to paid my employees a living wage, or failed to give a full day's work for a full day's pay",
     "Condition": "boss",
     "Vice": null,
@@ -1640,9 +1837,10 @@
     "Details": null
   },
   {
-    "id": "164",
+    "id": "167",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to honor my part of a contract",
     "Condition": null,
     "Vice": null,
@@ -1650,9 +1848,10 @@
     "Details": null
   },
   {
-    "id": "165",
+    "id": "168",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Overcharge someone, especially to take advantage of another's hardship or ignorance",
     "Condition": null,
     "Vice": null,
@@ -1660,9 +1859,10 @@
     "Details": null
   },
   {
-    "id": "166",
+    "id": "169",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to practice the corporal works of mercy",
     "Condition": null,
     "Vice": null,
@@ -1670,9 +1870,10 @@
     "Details": null
   },
   {
-    "id": "167",
+    "id": "170",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Participated in or promoted an unjust strike or lockout",
     "Condition": null,
     "Vice": null,
@@ -1680,9 +1881,10 @@
     "Details": null
   },
   {
-    "id": "168",
+    "id": "171",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Fired someone unjustly",
     "Condition": "boss",
     "Vice": null,
@@ -1690,9 +1892,10 @@
     "Details": null
   },
   {
-    "id": "169",
+    "id": "172",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Filed or promoted an unjust lawsuit against someone",
     "Condition": null,
     "Vice": null,
@@ -1700,9 +1903,10 @@
     "Details": null
   },
   {
-    "id": "170",
+    "id": "173",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Shown a disregard for the environment",
     "Condition": null,
     "Vice": null,
@@ -1710,9 +1914,10 @@
     "Details": null
   },
   {
-    "id": "171",
+    "id": "174",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Unwisely or disproportionately spent money on animals",
     "Condition": null,
     "Vice": null,
@@ -1720,9 +1925,10 @@
     "Details": null
   },
   {
-    "id": "172",
+    "id": "175",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to work diligently and deliver an honest day's work to my employer",
     "Condition": null,
     "Vice": null,
@@ -1730,9 +1936,10 @@
     "Details": null
   },
   {
-    "id": "173",
+    "id": "176",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to do the appropriate amount of work for my family",
     "Condition": "haveSpouce, haveKids",
     "Vice": null,
@@ -1740,9 +1947,10 @@
     "Details": null
   },
   {
-    "id": "174",
+    "id": "177",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Negligent in the stewardship of other people's money or goods",
     "Condition": null,
     "Vice": null,
@@ -1750,9 +1958,10 @@
     "Details": null
   },
   {
-    "id": "175",
+    "id": "178",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to return things borrowed",
     "Condition": null,
     "Vice": null,
@@ -1760,9 +1969,10 @@
     "Details": null
   },
   {
-    "id": "176",
+    "id": "179",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Been jealous of what another has",
     "Condition": null,
     "Vice": null,
@@ -1770,9 +1980,10 @@
     "Details": null
   },
   {
-    "id": "177",
+    "id": "180",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Been stingy",
     "Condition": null,
     "Vice": null,
@@ -1780,9 +1991,10 @@
     "Details": null
   },
   {
-    "id": "178",
+    "id": "181",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Been grasping and avaricious, placing too great importance upon material goods and comforts",
     "Condition": null,
     "Vice": null,
@@ -1790,9 +2002,10 @@
     "Details": null
   },
   {
-    "id": "179",
+    "id": "182",
+    "common": "0",
     "commandment": "7",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Is my heart set on earthly possessions or on the true treasures of Heaven?",
     "Condition": null,
     "Vice": null,
@@ -1800,9 +2013,10 @@
     "Details": null
   },
   {
-    "id": "180",
+    "id": "183",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Told a lie in order to deceive someone",
     "Condition": null,
     "Vice": null,
@@ -1810,9 +2024,10 @@
     "Details": null
   },
   {
-    "id": "181",
+    "id": "184",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Told the truth with the purpose and intention of ruining someone's reputation",
     "Condition": "gossip",
     "Vice": "detraction",
@@ -1820,9 +2035,10 @@
     "Details": null
   },
   {
-    "id": "182",
+    "id": "185",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Told a lie or spread rumors which may ruin someone's reputation",
     "Condition": "gossip",
     "Vice": "calumny or slander",
@@ -1830,9 +2046,10 @@
     "Details": null
   },
   {
-    "id": "183",
+    "id": "186",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Am I a busybody or do I love to spread gossip and secrets about others",
     "Condition": "gossip",
     "Vice": null,
@@ -1840,9 +2057,10 @@
     "Details": null
   },
   {
-    "id": "184",
+    "id": "187",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Enjoyed hearing bad news about my enemies?",
     "Condition": null,
     "Vice": null,
@@ -1850,9 +2068,10 @@
     "Details": null
   },
   {
-    "id": "185",
+    "id": "188",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Made a rash judgment",
     "Condition": null,
     "Vice": null,
@@ -1860,9 +2079,10 @@
     "Details": "Assuming the worst of another person based on circumstantial evidence."
   },
   {
-    "id": "186",
+    "id": "189",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to make reparation for a lie I told, or for harm done to a person's reputation",
     "Condition": null,
     "Vice": null,
@@ -1870,9 +2090,10 @@
     "Details": null
   },
   {
-    "id": "187",
+    "id": "190",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Failed to speak out in defense of the Catholic Faith, the Church, or of another person",
     "Condition": null,
     "Vice": null,
@@ -1880,9 +2101,10 @@
     "Details": null
   },
   {
-    "id": "188",
+    "id": "191",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Hypocrite",
     "Condition": null,
     "Vice": null,
@@ -1890,7 +2112,8 @@
     "Details": null
   },
   {
-    "id": "189",
+    "id": "192",
+    "common": "0",
     "commandment": "8",
     "parent": "0",
     "Text": "Prevented others from speaking the truth",
@@ -1900,9 +2123,10 @@
     "Details": null
   },
   {
-    "id": "190",
+    "id": "193",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Been boastful or arrogant",
     "Condition": null,
     "Vice": null,
@@ -1910,7 +2134,8 @@
     "Details": null
   },
   {
-    "id": "191",
+    "id": "194",
+    "common": "0",
     "commandment": "8",
     "parent": "0",
     "Text": "Constructed false arguments or engaged in ad-hominem attacks",
@@ -1920,7 +2145,8 @@
     "Details": "(straw-man) (attacks against the person rather than the argument or viewpoint)"
   },
   {
-    "id": "192",
+    "id": "195",
+    "common": "0",
     "commandment": "8",
     "parent": "0",
     "Text": "Over racted or behaved overly dramatic",
@@ -1930,9 +2156,10 @@
     "Details": null
   },
   {
-    "id": "193",
+    "id": "196",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Promoted false public information",
     "Condition": null,
     "Vice": "propaganda",
@@ -1940,7 +2167,8 @@
     "Details": null
   },
   {
-    "id": "194",
+    "id": "197",
+    "common": "0",
     "commandment": "8",
     "parent": "0",
     "Text": "Caused someone material, emotional or spiritual harm by my speech",
@@ -1950,9 +2178,10 @@
     "Details": null
   },
   {
-    "id": "195",
+    "id": "198",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Reported something unfavorable said of someone by another so as to create enmity between them",
     "Condition": "gossip",
     "Vice": "talebearing",
@@ -1960,9 +2189,10 @@
     "Details": null
   },
   {
-    "id": "196",
+    "id": "199",
+    "common": "0",
     "commandment": "8",
-    "parent": "0",
+    "parent": "-1",
     "Text": "Lent an ear to or encouraged the spreading of scandal about my neighbor",
     "Condition": "gossip",
     "Vice": null,

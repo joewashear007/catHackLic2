@@ -41,11 +41,13 @@ module catHacklic {
 
       /** Return the basic exam questions */
       public BasicExam(): item[] {
-        return [];
+        var customCommonItems = this._customItems.filter(q => q.commandment == -1);
+        return this._baseQuestions.filter(q => q.commandment == -1).concat(customCommonItems);
       }
 
       /** Returns the detailed exam computed by on the BasicExam */
-      public DetailedExam(): item[] {
+      public DetailedExam(ids: number[]): item[] {
+
         return [];
       }
 

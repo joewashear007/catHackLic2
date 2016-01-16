@@ -17,3 +17,60 @@ angular.module('catHacklic', ['ionic', 'catHacklic.examin'])
         }
     });
 });
+
+var HomeCtrl = (function () {
+    function HomeCtrl() {
+    }
+    return HomeCtrl;
+}());
+angular.module('catHacklic')
+    .controller('homeCtrl', HomeCtrl)
+    .controller('reviewCtrl', function ($scope, $state, ItemService) {
+    $scope.summary = ItemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+    $scope.save = function () {
+        ItemService.save();
+        $state.go('home');
+    };
+    $scope.clear = function () {
+        ItemService.clear();
+    };
+    $scope.$on('ItemService', function () {
+        $scope.summary = ItemService.summary(['blessing', 'ask', 'kill', 'embrace', 'resolution']);
+    });
+})
+    .controller('historyCtrl', function ($scope) {
+})
+    .controller('historyItemCtrl', function ($scope) {
+});
+
+angular.module('app.directives', [])
+    .directive('blankDirective', [function () {
+    }]);
+
+
+var catHacklic;
+(function (catHacklic) {
+    catHacklic.Paths = {
+        userinfo: 'v1.userinfo',
+        common: 'v1.commonItems'
+    };
+    var UserSerivce = (function () {
+        function UserSerivce() {
+            this._userInfo = JSON.parse(localStorage['v1.userinfo'] || {});
+        }
+        Object.defineProperty(UserSerivce.prototype, "user", {
+            get: function () { return this._userInfo; },
+            set: function (user) {
+                localStorage[catHacklic.Paths.userinfo] = JSON.stringify(user);
+                this._userInfo = user;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        UserSerivce.$inject = [];
+        return UserSerivce;
+    }());
+    catHacklic.UserSerivce = UserSerivce;
+})(catHacklic || (catHacklic = {}));
+angular.module('catHacklic')
+    .service('UserSerivce', catHacklic.UserSerivce);
