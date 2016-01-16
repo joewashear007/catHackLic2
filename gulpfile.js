@@ -11,34 +11,33 @@ var gulpCopy = require('gulp-copy');
 var concat = require('gulp-concat');
 
 var paths = {
+  dest: 'www/',
+  exam: {
+    dest: 'www/examin',
+    html: ['./src/**/*.html', './src/app.js'],
+    data: ['./src/examin/data/**/*'],
+    js: ['./src/examin/*.js']
+  },
   sass: ['./scss/**/*.scss'],
   src: ['./src/*.ts'],
-  html: ['./src/**/*.html', './src/app.js'],
   examin: ['./src/examin/*.js']
 };
 
-gulp.task('default', ['copy', 'examin.concat']);
+gulp.task('default', ['exam' ]);
 
-gulp.task('examin.concat', function() {
-  gulp.src(paths.examin)
-    .pipe(concat('examin.js'))
-    .pipe(gulp.dest('www/examin/'))
-});
 
-gulp.task('compile', function() {
-  gulp.src(paths.src)
-    .pipe(typescript({
-      emitError: false
-    }))
-    .pipe(gulp.dest('www/js/'))
-})
+gulp.task('compile', () => gulp.src(paths.src).pipe(typescript({
+  emitError: false
+})).pipe(gulp.dest('www/js/')));
 
-gulp.task('copy', function() {
-  gulp.src(paths.html)
-    .pipe(gulpCopy('www/', {
-      prefix: 1
-    }));
-})
+gulp.task('exam-js', () => gulp.src(paths.exam.js).pipe(concat('examin.js')).pipe(gulp.dest(paths.exam.dest)));
+gulp.task('exam-html', () => gulp.src(paths.exam.html).pipe(gulpCopy(paths.dest, {
+  prefix: 1
+})));
+gulp.task('exam-data', () => gulp.src(paths.exam.data).pipe(gulpCopy(paths.dest, {
+  prefix: 1
+})));
+gulp.task('exam', ['exam-js', 'exam-html', 'exam-js']);
 
 
 
@@ -60,8 +59,9 @@ gulp.task('sass', function(done) {
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
   // gulp.watch(paths.src, ['compile']);
-  gulp.watch(paths.html, ['copy']);
-  gulp.watch(paths.examin, ['examin.concat']);
+  gulp.watch(paths.exam.html, ['exam-html']);
+  gulp.watch(paths.exam.js, ['exam-js']);
+  gulp.watch(paths.exam.data, ['exam-data']);
 });
 
 gulp.task('install', ['git-check'], function() {

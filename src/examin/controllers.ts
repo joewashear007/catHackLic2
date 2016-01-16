@@ -16,7 +16,7 @@ class ExaminCtrl {
     ) {
     $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(m => { this.modal = m; });
     this.area = "blessing"; ``
-    this.editItem = {text: ""};
+    this.editItem = {text: "", common: 0, id:1000};
     this.editId = -1;
     this.items = itemService.get(this.area);
   }
@@ -45,7 +45,7 @@ class ExaminCtrl {
     } else {
       this.itemService.edit(this.area, this.editId, this.editItem);
     }
-    this.editItem = { text: ""};
+    this.editItem = { text: "", id: 1001, common: 0};
     this.modal.hide();
   }
   public edit(id: number) {
