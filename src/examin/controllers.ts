@@ -19,7 +19,7 @@ class ExaminCtrl {
     this.area = "blessing";
     this.editItem = {text: "", common: 0, id:1000};
     this.editId = -1;
-    this.items = itemService.get(this.area);
+    // this.items = itemService.get(this.area);
     itemService.BasicExam().then(d => this.baseExam = d);
   }
 

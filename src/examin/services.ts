@@ -2,14 +2,16 @@
 
 module catHacklic {
   export module examin {
+    interface ILoadedData {
+      items: catHacklic.examin.item[]
+    }
+
     export class ItemService {
       public static $inject = ["$rootScope", "$q", "$http", "UserSerivce"];
 
-      private _itemsRequest: ng.IPromise<catHacklic.examin.item[]>;
       private _constrants: {};
-      private _customItems: catHacklic.examin.item[];
       private _curItem: { [key: string]: catHacklic.examin.item[] };
-      private _baseQuestions: catHacklic.examin.item[];
+      private _loadedData: ng.IPromise<ILoadedData>;
 
       constructor(
         private $rootScope: ng.IRootScopeService,
@@ -17,11 +19,26 @@ module catHacklic {
         private $http: ng.IHttpService,
         private UserSerivce: catHacklic.UserSerivce
         ) {
-        this._curItem = JSON.parse(localStorage.getItem('ItemService') || '{}');
-        this.clear();
-        this._customItems = JSON.parse(localStorage['v1.exam.items'] || '[]');
-        this._itemsRequest = $http.get<catHacklic.examin.item[]>('examin/data/questions.json').then(q => q.data);
-        this._itemsRequest.then(d => { this._baseQuestions = d; });
+          this._loadData();
+      }
+
+      /** Functions loads all of the dat need by the app */
+      private _loadData(): ng.IPromise<ILoadedData> {
+        if (typeof this._loadedData === "undefined") {
+          var defer = this.$q.defer();
+
+          var loadCustomItems = this.$q.when(JSON.parse(localStorage['v1.exam.items'] || '[]'));
+          var loadJson = this.$http.get<catHacklic.examin.item[]>('examin/data/questions.json').then(q => q.data);
+
+          var loadedItems = this.$q.all([loadJson, loadCustomItems]).then((items: any[][]) => { return items[0].concat(items[1]); });
+
+          this._loadedData = this.$q.all([loadedItems]).then<ILoadedData>((results: any[]) => {
+            return  {
+              items: results[0]
+            }
+          });
+        }
+        return this._loadedData;
       }
 
       public buildConditions(base: basicExam): conditions {
@@ -42,18 +59,11 @@ module catHacklic {
 
       /** Return the basic exam questions */
       public BasicExam(): ng.IPromise<item[]> {
-        return this._itemsRequest.then(d => {
-          var customCommonItems = this._customItems.filter(q => q.commandment == -1);
-          var items = d.filter(q => q.commandment == -1).concat(customCommonItems);
-          console.log(items);
-          return items;
-        });
-        // return this.$q.when(items);
+        return this._loadData().then(data => data.items.filter(q => q.commandment == -1));
       }
 
       /** Returns the detailed exam computed by on the BasicExam */
       public DetailedExam(ids: number[]): item[] {
-
         return [];
       }
 

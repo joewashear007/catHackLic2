@@ -10,7 +10,6 @@ var ExaminCtrl = (function () {
         this.area = "blessing";
         this.editItem = { text: "", common: 0, id: 1000 };
         this.editId = -1;
-        this.items = itemService.get(this.area);
         itemService.BasicExam().then(function (d) { return _this.baseExam = d; });
     }
     ExaminCtrl.prototype.select = function (area) {
@@ -86,17 +85,26 @@ var catHacklic;
     (function (examin) {
         var ItemService = (function () {
             function ItemService($rootScope, $q, $http, UserSerivce) {
-                var _this = this;
                 this.$rootScope = $rootScope;
                 this.$q = $q;
                 this.$http = $http;
                 this.UserSerivce = UserSerivce;
-                this._curItem = JSON.parse(localStorage.getItem('ItemService') || '{}');
-                this.clear();
-                this._customItems = JSON.parse(localStorage['v1.exam.items'] || '[]');
-                this._itemsRequest = $http.get('examin/data/questions.json').then(function (q) { return q.data; });
-                this._itemsRequest.then(function (d) { _this._baseQuestions = d; });
+                this._loadData();
             }
+            ItemService.prototype._loadData = function () {
+                if (typeof this._loadedData === "undefined") {
+                    var defer = this.$q.defer();
+                    var loadCustomItems = this.$q.when(JSON.parse(localStorage['v1.exam.items'] || '[]'));
+                    var loadJson = this.$http.get('examin/data/questions.json').then(function (q) { return q.data; });
+                    var loadedItems = this.$q.all([loadJson, loadCustomItems]).then(function (items) { return items[0].concat(items[1]); });
+                    this._loadedData = this.$q.all([loadedItems]).then(function (results) {
+                        return {
+                            items: results[0]
+                        };
+                    });
+                }
+                return this._loadedData;
+            };
             ItemService.prototype.buildConditions = function (base) {
                 var userInfo = this.UserSerivce.user;
                 return {
@@ -113,13 +121,7 @@ var catHacklic;
                 };
             };
             ItemService.prototype.BasicExam = function () {
-                var _this = this;
-                return this._itemsRequest.then(function (d) {
-                    var customCommonItems = _this._customItems.filter(function (q) { return q.commandment == -1; });
-                    var items = d.filter(function (q) { return q.commandment == -1; }).concat(customCommonItems);
-                    console.log(items);
-                    return items;
-                });
+                return this._loadData().then(function (data) { return data.items.filter(function (q) { return q.commandment == -1; }); });
             };
             ItemService.prototype.DetailedExam = function (ids) {
                 return [];
