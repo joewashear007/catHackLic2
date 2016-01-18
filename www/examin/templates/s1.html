@@ -1,0 +1,26 @@
+<ion-view title="Gratitude">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="ctrl.help()"><i class="icon ion-help"></i></button>
+    <button class="button button-clear" ng-click="ctrl.done()"><i class="icon ion-checkmark-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <textarea placeholder="Today, I am grateful for ..."></textarea>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="examin-s1-help.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Gratitude</h1>
+      <button class="button button-clear" ng-click="ctrl.helpClose()"><i class="icon ion-close-round"></i></button>
+    </ion-header-bar>
+    <ion-content padding="true">
+      <p>Begin by thanking God in a personal dialogue for whatever you are most grateful for today.</p>
+    </ion-content>
+  </ion-modal-view>
+</script>

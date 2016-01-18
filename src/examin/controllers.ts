@@ -39,6 +39,35 @@ class ExaminS0Ctrl {
   public helpClose() { this.helpModal.hide(); }
 }
 
+class ExaminS1Ctrl {
+  public static $inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
+  public freeInput: string;
+  // public items: catHacklic.examin.todayItem[];
+  public helpModal: ionic.modal.IonicModalController;
+
+  constructor(
+    private $scope: ng.IScope,
+    private $state: ng.ui.IStateService,
+    private $ionicModal: ionic.modal.IonicModalService,
+    private itemService: catHacklic.examin.ItemService
+    ) {
+    // itemService.todayItems.then(q => this.items = q);
+    $ionicModal.fromTemplateUrl('examin-s1-help.html', { scope: $scope }).then(m => this.helpModal = m);
+    this.freeInput = "";
+  }
+
+  public done() {
+    // this.itemService.saveTodayItems(this.items);
+    if (this.itemService.examStep < 2) { this.itemService.next(); }
+    this.$state.go('examin.home');
+  }
+
+  public help() { this.helpModal.show(); }
+  public helpClose() { this.helpModal.hide(); }
+}
+
+
+
 class ReviewCtrl {
   summary: any;
 
@@ -62,5 +91,6 @@ class ReviewCtrl {
 angular.module('catHacklic.examin', [])
   .controller('ExaminCtrl', ExaminCtrl)
   .controller('ExaminS0Ctrl', ExaminS0Ctrl)
+  .controller('ExaminS1Ctrl', ExaminS1Ctrl)
   .controller('ReviewCtrl', ReviewCtrl)
 ;

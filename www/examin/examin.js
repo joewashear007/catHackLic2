@@ -33,6 +33,27 @@ var ExaminS0Ctrl = (function () {
     ExaminS0Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
     return ExaminS0Ctrl;
 }());
+var ExaminS1Ctrl = (function () {
+    function ExaminS1Ctrl($scope, $state, $ionicModal, itemService) {
+        var _this = this;
+        this.$scope = $scope;
+        this.$state = $state;
+        this.$ionicModal = $ionicModal;
+        this.itemService = itemService;
+        $ionicModal.fromTemplateUrl('examin-s1-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
+        this.freeInput = "";
+    }
+    ExaminS1Ctrl.prototype.done = function () {
+        if (this.itemService.examStep < 2) {
+            this.itemService.next();
+        }
+        this.$state.go('examin.home');
+    };
+    ExaminS1Ctrl.prototype.help = function () { this.helpModal.show(); };
+    ExaminS1Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
+    ExaminS1Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
+    return ExaminS1Ctrl;
+}());
 var ReviewCtrl = (function () {
     function ReviewCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
         this.$scope = $scope;
@@ -52,6 +73,7 @@ var ReviewCtrl = (function () {
 angular.module('catHacklic.examin', [])
     .controller('ExaminCtrl', ExaminCtrl)
     .controller('ExaminS0Ctrl', ExaminS0Ctrl)
+    .controller('ExaminS1Ctrl', ExaminS1Ctrl)
     .controller('ReviewCtrl', ReviewCtrl);
 
 
