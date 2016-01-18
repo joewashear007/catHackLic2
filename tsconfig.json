@@ -27,7 +27,6 @@
         "src/directives.ts",
         "src/examin/controllers.ts",
         "src/examin/models.ts",
-        "src/examin/router.ts",
         "src/examin/services.ts",
         "src/examin/starter.ts",
         "src/models.ts",

@@ -1,5 +1,16 @@
 module catHacklic {
   export module examin {
+    export interface IExamStepStatus {
+      s0: boolean;
+      s1: boolean;
+      s2: boolean;
+      s3: boolean;
+      s4: boolean;
+      s5: boolean;
+      s6: boolean;
+      s7: boolean;
+    }
+
     export interface basicExam {
       /** any other condition */
       [key: string]: boolean;

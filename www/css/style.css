@@ -1,3 +1,7 @@
 .item-content > span {
   white-space: normal;
 }
+
+.item[disabled] {
+  color: grey;
+}

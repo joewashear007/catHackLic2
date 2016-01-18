@@ -1,78 +1,33 @@
 class ExaminCtrl {
-  editItem: catHacklic.examin.item;
-  editId: number;
-  items: catHacklic.examin.item[];
-  modal: ionic.modal.IonicModalController;
-  area: string;
-  summary: any;
-  baseExam: catHacklic.examin.item[];
+  public examSteps: catHacklic.examin.IExamStepStatus;
+  public step: number;
 
-  public static $inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+  public static $inject = ["$rootScope", "ItemService"];
   constructor(
-    private $scope: ng.IScope,
-    private itemService: catHacklic.examin.ItemService,
-    private $ionicListDelegate: ionic.list.IonicListDelegate,
-    private $ionicModal: ionic.modal.IonicModalService,
-    private $state: ng.ui.IStateService
+    private $scope: ng.IRootScopeService,
+    private itemService: catHacklic.examin.ItemService
     ) {
-    $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(m => { this.modal = m; });
-    this.area = "blessing";
-    this.editItem = { text: "", common: 0, id: 1000 };
-    this.editId = -1;
-    // this.items = itemService.get(this.area);
-    itemService.BasicExam().then(d => this.baseExam = d);
+    this.step = 0;
+    // this.examSteps = itemService.examSteps;
+    this.$scope.$on('exam.step', () => {
+      console.log("Braodcast worked!!!!");
+      this.step++;
+    });
   }
 
-  public select(area: string) {
-    console.log("Selected: ", area);
-    if (area == "summary") {
-      this.summary = this.itemService.summary();
-      console.info(this.summary);
-    } else {
-      this.area = area;
-      this.items = this.itemService.get(this.area);
-    }
-  }
-
-  public close() { this.modal.hide(); }
-  public add() {
-    this.editId = -1;
-    this.modal.show();
-  }
-  public save() {
-    console.log(this.editItem, this.area);
-    if (this.editId < 0) {
-      this.editItem.selected = true;
-      this.itemService.add(this.area, this.editItem);
-    } else {
-      this.itemService.edit(this.area, this.editId, this.editItem);
-    }
-    this.editItem = { text: "", id: 1001, common: 0 };
-    this.modal.hide();
-  }
-  public edit(id: number) {
-    this.editId = id;
-    this.editItem = this.items[id];
-    this.modal.show();
-    this.$ionicListDelegate.closeOptionButtons();
-  }
-  public delete(id: number) { this.itemService.delete(this.area, id); };
-  public update(id: number) {
-    this.items[id].selected = !this.items[id].selected;
-    this.itemService.edit(this.area, id, this.items[id]);
-  }
   public clear() { this.itemService.clear(); };
-  public reset() { this.itemService.reset(); this.items = this.itemService.get(this.area); }
+  public reset() { this.itemService.reset(); };
 }
 
 class ExaminS0Ctrl {
-  public static $inject = ['$scope', '$ionicModal', 'ItemService'];
+  public static $inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
 
   public items: catHacklic.examin.todayItem[];
   public helpModal: ionic.modal.IonicModalController;
 
   constructor(
     private $scope: ng.IScope,
+    private $state: ng.ui.IStateService,
     private $ionicModal: ionic.modal.IonicModalService,
     private itemService: catHacklic.examin.ItemService
     ) {
@@ -83,9 +38,10 @@ class ExaminS0Ctrl {
   public done() {
     console.log(this.items.filter(q => q.selected));
     this.itemService.saveTodayItems(this.items);
+    this.$state.go('examin.home');
   }
-  public help() {    this.helpModal.show();  }
-  public helpClose() {    this.helpModal.hide();  }
+  public help() { this.helpModal.show(); }
+  public helpClose() { this.helpModal.hide(); }
 }
 
 class ReviewCtrl {

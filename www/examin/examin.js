@@ -1,67 +1,26 @@
 var ExaminCtrl = (function () {
-    function ExaminCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
+    function ExaminCtrl($scope, itemService) {
         var _this = this;
         this.$scope = $scope;
         this.itemService = itemService;
-        this.$ionicListDelegate = $ionicListDelegate;
-        this.$ionicModal = $ionicModal;
-        this.$state = $state;
-        $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(function (m) { _this.modal = m; });
-        this.area = "blessing";
-        this.editItem = { text: "", common: 0, id: 1000 };
-        this.editId = -1;
-        itemService.BasicExam().then(function (d) { return _this.baseExam = d; });
+        this.step = 0;
+        this.$scope.$on('exam.step', function () {
+            console.log("Braodcast worked!!!!");
+            _this.step++;
+        });
     }
-    ExaminCtrl.prototype.select = function (area) {
-        console.log("Selected: ", area);
-        if (area == "summary") {
-            this.summary = this.itemService.summary();
-            console.info(this.summary);
-        }
-        else {
-            this.area = area;
-            this.items = this.itemService.get(this.area);
-        }
-    };
-    ExaminCtrl.prototype.close = function () { this.modal.hide(); };
-    ExaminCtrl.prototype.add = function () {
-        this.editId = -1;
-        this.modal.show();
-    };
-    ExaminCtrl.prototype.save = function () {
-        console.log(this.editItem, this.area);
-        if (this.editId < 0) {
-            this.editItem.selected = true;
-            this.itemService.add(this.area, this.editItem);
-        }
-        else {
-            this.itemService.edit(this.area, this.editId, this.editItem);
-        }
-        this.editItem = { text: "", id: 1001, common: 0 };
-        this.modal.hide();
-    };
-    ExaminCtrl.prototype.edit = function (id) {
-        this.editId = id;
-        this.editItem = this.items[id];
-        this.modal.show();
-        this.$ionicListDelegate.closeOptionButtons();
-    };
-    ExaminCtrl.prototype.delete = function (id) { this.itemService.delete(this.area, id); };
-    ;
-    ExaminCtrl.prototype.update = function (id) {
-        this.items[id].selected = !this.items[id].selected;
-        this.itemService.edit(this.area, id, this.items[id]);
-    };
     ExaminCtrl.prototype.clear = function () { this.itemService.clear(); };
     ;
-    ExaminCtrl.prototype.reset = function () { this.itemService.reset(); this.items = this.itemService.get(this.area); };
-    ExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+    ExaminCtrl.prototype.reset = function () { this.itemService.reset(); };
+    ;
+    ExaminCtrl.$inject = ["$rootScope", "ItemService"];
     return ExaminCtrl;
 }());
 var ExaminS0Ctrl = (function () {
-    function ExaminS0Ctrl($scope, $ionicModal, itemService) {
+    function ExaminS0Ctrl($scope, $state, $ionicModal, itemService) {
         var _this = this;
         this.$scope = $scope;
+        this.$state = $state;
         this.$ionicModal = $ionicModal;
         this.itemService = itemService;
         itemService.todayItems.then(function (q) { return _this.items = q; });
@@ -70,10 +29,11 @@ var ExaminS0Ctrl = (function () {
     ExaminS0Ctrl.prototype.done = function () {
         console.log(this.items.filter(function (q) { return q.selected; }));
         this.itemService.saveTodayItems(this.items);
+        this.$state.go('examin.home');
     };
     ExaminS0Ctrl.prototype.help = function () { this.helpModal.show(); };
     ExaminS0Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
-    ExaminS0Ctrl.$inject = ['$scope', '$ionicModal', 'ItemService'];
+    ExaminS0Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
     return ExaminS0Ctrl;
 }());
 var ReviewCtrl = (function () {
@@ -109,6 +69,7 @@ var catHacklic;
                 this.$http = $http;
                 this.UserSerivce = UserSerivce;
                 this._loadData();
+                this._examStep = { s0: false, s1: false, s2: false, s3: false, s4: false, s5: false, s6: false, s7: false, };
             }
             ItemService.prototype._loadData = function () {
                 if (typeof this._loadedData === "undefined") {
@@ -137,6 +98,11 @@ var catHacklic;
                 enumerable: true,
                 configurable: true
             });
+            Object.defineProperty(ItemService.prototype, "examSteps", {
+                get: function () { return this._examStep; },
+                enumerable: true,
+                configurable: true
+            });
             Object.defineProperty(ItemService.prototype, "todayItems", {
                 get: function () {
                     return this.data.then(function (q) { return q.today.filter(function (w) { return w.show; }); });
@@ -146,6 +112,8 @@ var catHacklic;
             });
             ItemService.prototype.saveTodayItems = function (items) {
                 this.data.then(function (q) { return q.today = items; });
+                this._examStep.s0 = true;
+                this.$rootScope.$emit('exam.step');
             };
             ItemService.prototype.buildConditions = function (base) {
                 var userInfo = this.UserSerivce.user;

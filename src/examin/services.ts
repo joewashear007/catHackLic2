@@ -7,12 +7,15 @@ module catHacklic {
       today: todayItem[]
     }
 
+
     export class ItemService {
       public static $inject = ["$rootScope", "$q", "$http", "UserSerivce"];
 
       private _constrants: {};
       private _curItem: { [key: string]: catHacklic.examin.item[] };
       private _loadedData: ng.IPromise<ILoadedData>;
+
+      private _examStep: IExamStepStatus;
 
       constructor(
         private $rootScope: ng.IRootScopeService,
@@ -21,6 +24,7 @@ module catHacklic {
         private UserSerivce: catHacklic.UserSerivce
         ) {
         this._loadData();
+        this._examStep = { s0: false, s1: false, s2: false, s3: false, s4: false, s5: false, s6: false, s7: false, };
       }
 
       /** Functions loads all of the dat need by the app */
@@ -53,12 +57,16 @@ module catHacklic {
         return this._loadedData;
       }
 
-      public get data() {return this._loadedData; }
+      public get data() { return this._loadedData; }
+      public get examSteps() { return this._examStep; }
+
       public get todayItems(): ng.IPromise<todayItem[]> {
         return this.data.then(q => q.today.filter(w => w.show));
       }
       public saveTodayItems(items: todayItem[]): void {
         this.data.then(q => q.today = items);
+        this._examStep.s0 = true;
+        this.$rootScope.$emit('exam.step');
       }
 
       public buildConditions(base: basicExam): conditions {
