@@ -1,5 +1,4 @@
 class ExaminCtrl {
-  public examSteps: catHacklic.examin.IExamStepStatus;
   public step: number;
 
   public static $inject = ["$rootScope", "ItemService"];
@@ -8,11 +7,7 @@ class ExaminCtrl {
     private itemService: catHacklic.examin.ItemService
     ) {
     this.step = 0;
-    // this.examSteps = itemService.examSteps;
-    this.$scope.$on('exam.step', () => {
-      console.log("Braodcast worked!!!!");
-      this.step++;
-    });
+    this.$scope.$on('exam.step', () => this.step = this.itemService.examStep);
   }
 
   public clear() { this.itemService.clear(); };

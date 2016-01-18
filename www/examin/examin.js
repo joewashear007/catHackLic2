@@ -4,10 +4,7 @@ var ExaminCtrl = (function () {
         this.$scope = $scope;
         this.itemService = itemService;
         this.step = 0;
-        this.$scope.$on('exam.step', function () {
-            console.log("Braodcast worked!!!!");
-            _this.step++;
-        });
+        this.$scope.$on('exam.step', function () { return _this.step = _this.itemService.examStep; });
     }
     ExaminCtrl.prototype.clear = function () { this.itemService.clear(); };
     ;
@@ -69,7 +66,7 @@ var catHacklic;
                 this.$http = $http;
                 this.UserSerivce = UserSerivce;
                 this._loadData();
-                this._examStep = { s0: false, s1: false, s2: false, s3: false, s4: false, s5: false, s6: false, s7: false, };
+                this._examStep = 0;
             }
             ItemService.prototype._loadData = function () {
                 if (typeof this._loadedData === "undefined") {
@@ -98,7 +95,7 @@ var catHacklic;
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(ItemService.prototype, "examSteps", {
+            Object.defineProperty(ItemService.prototype, "examStep", {
                 get: function () { return this._examStep; },
                 enumerable: true,
                 configurable: true
@@ -112,7 +109,12 @@ var catHacklic;
             });
             ItemService.prototype.saveTodayItems = function (items) {
                 this.data.then(function (q) { return q.today = items; });
-                this._examStep.s0 = true;
+                if (this._examStep == 0) {
+                    this.next();
+                }
+            };
+            ItemService.prototype.next = function () {
+                this._examStep++;
                 this.$rootScope.$emit('exam.step');
             };
             ItemService.prototype.buildConditions = function (base) {
