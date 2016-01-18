@@ -17,7 +17,7 @@ class ExaminCtrl {
     ) {
     $ionicModal.fromTemplateUrl('modal.html', { scope: $scope }).then(m => { this.modal = m; });
     this.area = "blessing";
-    this.editItem = {text: "", common: 0, id:1000};
+    this.editItem = { text: "", common: 0, id: 1000 };
     this.editId = -1;
     // this.items = itemService.get(this.area);
     itemService.BasicExam().then(d => this.baseExam = d);
@@ -47,7 +47,7 @@ class ExaminCtrl {
     } else {
       this.itemService.edit(this.area, this.editId, this.editItem);
     }
-    this.editItem = { text: "", id: 1001, common: 0};
+    this.editItem = { text: "", id: 1001, common: 0 };
     this.modal.hide();
   }
   public edit(id: number) {
@@ -62,7 +62,33 @@ class ExaminCtrl {
     this.itemService.edit(this.area, id, this.items[id]);
   }
   public clear() { this.itemService.clear(); };
-  public reset() { this.itemService.reset(); this.items = this.itemService.get(this.area);   }
+  public reset() { this.itemService.reset(); this.items = this.itemService.get(this.area); }
+}
+
+class ExaminS0Ctrl {
+  public static $inject = ['$scope'];
+
+  public items: catHacklic.examin.item[];
+  constructor(private $scope: ng.IScope) {
+    this.items = [
+      { id: 0, common: 0, text: "thing 1" },
+      { id: 0, common: 0, text: "thing 2" },
+      { id: 0, common: 0, text: "thing 3" },
+      { id: 0, common: 0, text: "thing 4" },
+    ];
+  }
+
+  public toggle(index: number): void {
+    if (typeof this.items[index].selected === "undefined") {
+      this.items[index].selected = true;
+    } else {
+      this.items[index].selected = !this.items[index].selected;
+    }
+  }
+
+  public done() {
+    console.log(this.items.filter(q => q.selected));
+  }
 }
 
 class ReviewCtrl {
@@ -87,5 +113,6 @@ class ReviewCtrl {
 
 angular.module('catHacklic.examin', [])
   .controller('ExaminCtrl', ExaminCtrl)
+  .controller('ExaminS0Ctrl', ExaminS0Ctrl)
   .controller('ReviewCtrl', ReviewCtrl)
 ;

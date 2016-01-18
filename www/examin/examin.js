@@ -58,6 +58,30 @@ var ExaminCtrl = (function () {
     ExaminCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
     return ExaminCtrl;
 }());
+var ExaminS0Ctrl = (function () {
+    function ExaminS0Ctrl($scope) {
+        this.$scope = $scope;
+        this.items = [
+            { id: 0, common: 0, text: "thing 1" },
+            { id: 0, common: 0, text: "thing 2" },
+            { id: 0, common: 0, text: "thing 3" },
+            { id: 0, common: 0, text: "thing 4" },
+        ];
+    }
+    ExaminS0Ctrl.prototype.toggle = function (index) {
+        if (typeof this.items[index].selected === "undefined") {
+            this.items[index].selected = true;
+        }
+        else {
+            this.items[index].selected = !this.items[index].selected;
+        }
+    };
+    ExaminS0Ctrl.prototype.done = function () {
+        console.log(this.items.filter(function (q) { return q.selected; }));
+    };
+    ExaminS0Ctrl.$inject = ['$scope'];
+    return ExaminS0Ctrl;
+}());
 var ReviewCtrl = (function () {
     function ReviewCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
         this.$scope = $scope;
@@ -76,6 +100,7 @@ var ReviewCtrl = (function () {
 }());
 angular.module('catHacklic.examin', [])
     .controller('ExaminCtrl', ExaminCtrl)
+    .controller('ExaminS0Ctrl', ExaminS0Ctrl)
     .controller('ReviewCtrl', ReviewCtrl);
 
 

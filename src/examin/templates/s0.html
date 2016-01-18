@@ -1,0 +1,20 @@
+<ion-view title="About Today">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="ctrl.help()"><i class="icon ion-help"></i></button>
+    <button class="button button-clear" ng-click="ctrl.done()"><i class="icon ion-checkmark-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-toggle" ng-repeat="item in ctrl.items">
+        {{item.text}}
+        <label class="toggle toggle-assertive">
+          <input type="checkbox" ng-model="item.selected">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

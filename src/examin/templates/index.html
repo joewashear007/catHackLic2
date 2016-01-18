@@ -1,74 +1,49 @@
-<ion-view title="Examination - {{ctrl.area}}" hide-back-button=true>
+<ion-view title="Examination">
   <ion-nav-buttons side="primary">
     <button class="button button-positive button-clear" ui-sref="examin.review"><i class="icon ion-checkmark-round"></i></button>
-    <button class="button button-positive button-clear" ng-click="ctrl.reset()"><i class="icon ion-more"></i></button>
   </ion-nav-buttons>
 
-  <ion-tabs class="tabs-stable tabs-icon-top">
-    <ion-tab title="Blessings" icon="ion-thumbsup" on-select="ctrl.select('blessing')">
-      <div ng-include="'examinItemList.html'"></div>
-    </ion-tab>
-    <ion-tab title="Ask" icon="ion-plus" on-select="ctrl.select('ask')">
-      <!-- <div ng-include="'examinItemList.html'"></div> -->
-    </ion-tab>
-    <ion-tab title="Kill" icon="ion-android-delete" on-select="ctrl.select('kill')">
-      <!-- <div ng-include="'examinItemList.html'"></div> -->
-    </ion-tab>
-    <ion-tab title="Embrace" icon="ion-android-people" on-select="ctrl.select('embrace')">
-      <!-- <div ng-include="'examinItemList.html'"></div> -->
-    </ion-tab>
-    <ion-tab title="Resolution" icon="ion-android-checkbox-outline" on-select="ctrl.select('resolution')">
-      <!-- <div ng-include="'examinItemList.html'"></div> -->
-    </ion-tab>
-  </ion-tabs>
-</ion-view>
+  <ion-content >
+    <a class="list">
+      <a class="item item-icon-right" ui-sref="examin.s0">
+        0: About Today
+        <i class="icon ion-checkmark-round balanced"></i>
+      </a>
 
-<script id="examinItemList.html" type="text/ng-template">
-  <ion-content class="has-footer">
-    <ion-list>
-      <ion-item ng-repeat="item in ctrl.baseExam" ng-class="{'item-assertive': item.selected}" ng-click="ctrl.update($index)">
-        <span class="item-spacing">{{item.text}}</span>
-        <ion-option-button class="button-positive" ng-click="ctrl.edit($index)"> Edit </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="ctrl.delete($index)"> Delete </ion-option-button>
-      </ion-item>
-    </ion-list>
+      <a class="item item-icon-right">
+        1: Gratitude
+        <i class="icon ion-alert energized"></i>
+      </a>
+
+      <a class="item item-icon-right">
+        2: Awareness
+        <i class="icon ion-alert energized"></i>
+      </a>
+
+      <a class="item item-icon-right">
+        3: Significant Moments
+        <i class="icon ion-alert energized"></i>
+      </a>
+
+      <a class="item item-icon-right">
+        4: Peace
+        <i class="icon ion-alert energized"></i>
+      </a>
+
+      <a class="item item-icon-right">
+        5: Freedom
+        <i class="icon ion-alert energized"></i>
+      </a>
+
+      <a class="item item-icon-right">
+        6: Others
+        <i class="icon ion-alert energized"></i>
+      </a>
+
+      <a class="item item-icon-right">
+        7: Our Father
+        <i class="icon ion-alert energized"></i>
+      </a>
+    </a>
   </ion-content>
-  <ion-footer-bar class="bar-stable">
-    <h1 class="title"></h1>
-    <div class="buttons">
-      <button class="button button-positive button-clear" ng-click="ctrl.add()">
-      <i class="icon ion-plus-round"></i>
-      </button>
-    </div>
-  </ion-footer-bar>
-</script>
-
-<script id="modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">{{(ctrl.editId
-        <0) ? 'New' : 'Edit' }} Blessing</h1>
-          <button class="button button-default button-clear" ng-click="ctrl.close()">
-            <i class="icon ion-close-round"></i>
-          </button>
-    </ion-header-bar>
-    <ion-content>
-      <form name="editForm" ng-submit="ctrl.save()">
-        <div class="list">
-          <label class="item item-input">
-            <input type="text" placeholder="Blessing" ng-model="ctrl.editItem.text" required>
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Category" ng-model="ctrl.editItem.category">
-          </label>
-          <label class="item item-input">
-            <textarea placeholder="Comments"></textarea>
-          </label>
-        </div>
-        <div class="padding">
-          <input type="submit" class="button button-block button-positive" ng-disabled="editForm.$invalid" value="{{(ctrl.editId<0) ? 'Add' : 'Save' }}" />
-        </div>
-      </form>
-    </ion-content>
-  </ion-modal-view>
-</script>
+</ion-view>
