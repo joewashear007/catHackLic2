@@ -1,0 +1,20 @@
+text,condition,selected,show,config
+Went to Mass,mass,FALSE,TRUE,FALSE
+Went to Confession,confession,FALSE,TRUE,FALSE
+Went to Funeral,funeral,FALSE,TRUE,FALSE
+Voted Today,vote,FALSE,TRUE,FALSE
+Is Sunday or Holy Day,sunday,FALSE,FALSE,FALSE
+Argued with Someone,argument,FALSE,TRUE,FALSE
+Watched Movies / TV,movie,FALSE,TRUE,FALSE
+Had Sex,sex,FALSE,TRUE,FALSE
+Have Kids,haveKids,FALSE,FALSE,TRUE
+Have Spouse,haveSpouce,FALSE,FALSE,TRUE
+Have Parents,haveParents,FALSE,FALSE,TRUE
+Is Student,student,FALSE,FALSE,TRUE
+Listened to Music,music,FALSE,TRUE,FALSE
+Drank Alcohol,alcohol,FALSE,TRUE,FALSE
+Went on Date,date,FALSE,TRUE,FALSE
+Went out with friends / Party,party,FALSE,TRUE,FALSE
+Went to Adoration,adoration,FALSE,TRUE,FALSE
+Played Video Games,videogames,FALSE,TRUE,FALSE
+Prayed Rosary,rosary,FALSE,TRUE,FALSE

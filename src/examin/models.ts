@@ -18,6 +18,15 @@ module catHacklic {
     }
     export interface conditions extends basicExam {
     }
+
+    export interface todayItem {
+      text: string;
+      condition: string;
+      selected: boolean;
+      show: boolean;
+      config: boolean;
+    }
+
     export interface item {
       /** The id of the item */
       id: number;

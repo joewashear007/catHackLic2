@@ -1,0 +1,135 @@
+[
+  {
+    "text": "Went to Mass",
+    "condition": "mass",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Went to Confession",
+    "condition": "confession",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Went to Funeral",
+    "condition": "funeral",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Voted Today",
+    "condition": "vote",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Is Sunday or Holy Day",
+    "condition": "sunday",
+    "selected": false,
+    "show": false,
+    "config": false
+  },
+  {
+    "text": "Argued with Someone",
+    "condition": "argument",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Watched Movies / TV",
+    "condition": "movie",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Had Sex",
+    "condition": "sex",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Have Kids",
+    "condition": "haveKids",
+    "selected": false,
+    "show": false,
+    "config": true
+  },
+  {
+    "text": "Have Spouse",
+    "condition": "haveSpouce",
+    "selected": false,
+    "show": false,
+    "config": true
+  },
+  {
+    "text": "Have Parents",
+    "condition": "haveParents",
+    "selected": false,
+    "show": false,
+    "config": true
+  },
+  {
+    "text": "Is Student",
+    "condition": "student",
+    "selected": false,
+    "show": false,
+    "config": true
+  },
+  {
+    "text": "Listened to Music",
+    "condition": "music",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Drank Alcohol",
+    "condition": "alcohol",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Went on Date",
+    "condition": "date",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Went out with friends / Party",
+    "condition": "party",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Went to Adoration",
+    "condition": "adoration",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Played Video Games",
+    "condition": "videogames",
+    "selected": false,
+    "show": true,
+    "config": false
+  },
+  {
+    "text": "Prayed Rosary",
+    "condition": "rosary",
+    "selected": false,
+    "show": true,
+    "config": false
+  }
+]

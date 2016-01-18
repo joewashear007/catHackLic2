@@ -59,27 +59,21 @@ var ExaminCtrl = (function () {
     return ExaminCtrl;
 }());
 var ExaminS0Ctrl = (function () {
-    function ExaminS0Ctrl($scope) {
+    function ExaminS0Ctrl($scope, $ionicModal, itemService) {
+        var _this = this;
         this.$scope = $scope;
-        this.items = [
-            { id: 0, common: 0, text: "thing 1" },
-            { id: 0, common: 0, text: "thing 2" },
-            { id: 0, common: 0, text: "thing 3" },
-            { id: 0, common: 0, text: "thing 4" },
-        ];
+        this.$ionicModal = $ionicModal;
+        this.itemService = itemService;
+        itemService.todayItems.then(function (q) { return _this.items = q; });
+        $ionicModal.fromTemplateUrl('examin-s0-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
     }
-    ExaminS0Ctrl.prototype.toggle = function (index) {
-        if (typeof this.items[index].selected === "undefined") {
-            this.items[index].selected = true;
-        }
-        else {
-            this.items[index].selected = !this.items[index].selected;
-        }
-    };
     ExaminS0Ctrl.prototype.done = function () {
         console.log(this.items.filter(function (q) { return q.selected; }));
+        this.itemService.saveTodayItems(this.items);
     };
-    ExaminS0Ctrl.$inject = ['$scope'];
+    ExaminS0Ctrl.prototype.help = function () { this.helpModal.show(); };
+    ExaminS0Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
+    ExaminS0Ctrl.$inject = ['$scope', '$ionicModal', 'ItemService'];
     return ExaminS0Ctrl;
 }());
 var ReviewCtrl = (function () {
@@ -119,16 +113,39 @@ var catHacklic;
             ItemService.prototype._loadData = function () {
                 if (typeof this._loadedData === "undefined") {
                     var defer = this.$q.defer();
+                    var loadConfigItems = this.$q.when(JSON.parse(localStorage['v1.exam.userConfig'] || '[]'));
+                    var loadTodayJson = this.$http.get('examin/data/todayItems.json').then(function (q) { return q.data; });
+                    var loadedTodayItems = this.$q.all([loadConfigItems, loadTodayJson]).then(function (items) {
+                        items[0].forEach(function (w) { return items[1].filter(function (p) { return p.text == w.text; })[0].selected = w.selected; });
+                        items[1].filter(function (q) { return q.condition == "sunday"; })[0].selected = (new Date()).getDay() == 0;
+                        return items[1];
+                    });
                     var loadCustomItems = this.$q.when(JSON.parse(localStorage['v1.exam.items'] || '[]'));
                     var loadJson = this.$http.get('examin/data/questions.json').then(function (q) { return q.data; });
                     var loadedItems = this.$q.all([loadJson, loadCustomItems]).then(function (items) { return items[0].concat(items[1]); });
-                    this._loadedData = this.$q.all([loadedItems]).then(function (results) {
+                    this._loadedData = this.$q.all([loadedItems, loadedTodayItems]).then(function (results) {
                         return {
-                            items: results[0]
+                            items: results[0],
+                            today: results[1]
                         };
                     });
                 }
                 return this._loadedData;
+            };
+            Object.defineProperty(ItemService.prototype, "data", {
+                get: function () { return this._loadedData; },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(ItemService.prototype, "todayItems", {
+                get: function () {
+                    return this.data.then(function (q) { return q.today.filter(function (w) { return w.show; }); });
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ItemService.prototype.saveTodayItems = function (items) {
+                this.data.then(function (q) { return q.today = items; });
             };
             ItemService.prototype.buildConditions = function (base) {
                 var userInfo = this.UserSerivce.user;
@@ -146,7 +163,7 @@ var catHacklic;
                 };
             };
             ItemService.prototype.BasicExam = function () {
-                return this._loadData().then(function (data) { return data.items.filter(function (q) { return q.commandment == -1; }); });
+                return this.data.then(function (data) { return data.items.filter(function (q) { return q.commandment == -1; }); });
             };
             ItemService.prototype.DetailedExam = function (ids) {
                 return [];

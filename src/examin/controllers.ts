@@ -66,29 +66,26 @@ class ExaminCtrl {
 }
 
 class ExaminS0Ctrl {
-  public static $inject = ['$scope'];
+  public static $inject = ['$scope', '$ionicModal', 'ItemService'];
 
-  public items: catHacklic.examin.item[];
-  constructor(private $scope: ng.IScope) {
-    this.items = [
-      { id: 0, common: 0, text: "thing 1" },
-      { id: 0, common: 0, text: "thing 2" },
-      { id: 0, common: 0, text: "thing 3" },
-      { id: 0, common: 0, text: "thing 4" },
-    ];
-  }
+  public items: catHacklic.examin.todayItem[];
+  public helpModal: ionic.modal.IonicModalController;
 
-  public toggle(index: number): void {
-    if (typeof this.items[index].selected === "undefined") {
-      this.items[index].selected = true;
-    } else {
-      this.items[index].selected = !this.items[index].selected;
-    }
+  constructor(
+    private $scope: ng.IScope,
+    private $ionicModal: ionic.modal.IonicModalService,
+    private itemService: catHacklic.examin.ItemService
+    ) {
+    itemService.todayItems.then(q => this.items = q);
+    $ionicModal.fromTemplateUrl('examin-s0-help.html', { scope: $scope }).then(m => this.helpModal = m);
   }
 
   public done() {
     console.log(this.items.filter(q => q.selected));
+    this.itemService.saveTodayItems(this.items);
   }
+  public help() {    this.helpModal.show();  }
+  public helpClose() {    this.helpModal.hide();  }
 }
 
 class ReviewCtrl {

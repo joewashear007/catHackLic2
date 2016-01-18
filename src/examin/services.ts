@@ -3,7 +3,8 @@
 module catHacklic {
   export module examin {
     interface ILoadedData {
-      items: catHacklic.examin.item[]
+      items: item[],
+      today: todayItem[]
     }
 
     export class ItemService {
@@ -19,7 +20,7 @@ module catHacklic {
         private $http: ng.IHttpService,
         private UserSerivce: catHacklic.UserSerivce
         ) {
-          this._loadData();
+        this._loadData();
       }
 
       /** Functions loads all of the dat need by the app */
@@ -27,18 +28,37 @@ module catHacklic {
         if (typeof this._loadedData === "undefined") {
           var defer = this.$q.defer();
 
+          var loadConfigItems = this.$q.when(JSON.parse(localStorage['v1.exam.userConfig'] || '[]'));
+          var loadTodayJson = this.$http.get<catHacklic.examin.item[]>('examin/data/todayItems.json').then(q => q.data);
+          var loadedTodayItems = this.$q.all([loadConfigItems, loadTodayJson]).then((items: todayItem[][]) => {
+            // Merges the config items into the today items
+            items[0].forEach(w => items[1].filter(p => p.text == w.text)[0].selected = w.selected);
+            // TODO: add in Holy Days!
+            items[1].filter(q => q.condition == "sunday")[0].selected = (new Date()).getDay() == 0;
+            return items[1];
+          });
+
           var loadCustomItems = this.$q.when(JSON.parse(localStorage['v1.exam.items'] || '[]'));
           var loadJson = this.$http.get<catHacklic.examin.item[]>('examin/data/questions.json').then(q => q.data);
 
           var loadedItems = this.$q.all([loadJson, loadCustomItems]).then((items: any[][]) => { return items[0].concat(items[1]); });
 
-          this._loadedData = this.$q.all([loadedItems]).then<ILoadedData>((results: any[]) => {
-            return  {
-              items: results[0]
+          this._loadedData = this.$q.all([loadedItems, loadedTodayItems]).then<ILoadedData>((results: any[]) => {
+            return {
+              items: results[0],
+              today: results[1]
             }
           });
         }
         return this._loadedData;
+      }
+
+      public get data() {return this._loadedData; }
+      public get todayItems(): ng.IPromise<todayItem[]> {
+        return this.data.then(q => q.today.filter(w => w.show));
+      }
+      public saveTodayItems(items: todayItem[]): void {
+        this.data.then(q => q.today = items);
       }
 
       public buildConditions(base: basicExam): conditions {
@@ -59,7 +79,7 @@ module catHacklic {
 
       /** Return the basic exam questions */
       public BasicExam(): ng.IPromise<item[]> {
-        return this._loadData().then(data => data.items.filter(q => q.commandment == -1));
+        return this.data.then(data => data.items.filter(q => q.commandment == -1));
       }
 
       /** Returns the detailed exam computed by on the BasicExam */
