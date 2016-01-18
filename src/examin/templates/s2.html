@@ -1,0 +1,64 @@
+<ion-view title="Awareness">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="ctrl.help()"><i class="icon ion-help"></i></button>
+    <button class="button button-clear" ng-click="ctrl.done()"><i class="icon ion-checkmark-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-tabs class="tabs-striped">
+    <ion-tab title="List">
+      <ion-nav-view>
+        <ion-view>
+          <ion-content class="has-tabs has-header">
+            <ion-list>
+              <ion-item class="item-text-wrap item-toggle" ng-repeat="item in ctrl.items">
+                {{item.text}}
+                <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="item.selected">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </ion-item>
+              <div class="item item-divider" ng-click="ctrl.more = !ctrl.more">Toggle all Items</div>
+              <ion-item class="item-text-wrap item-toggle" ng-repeat="item in ctrl.allitems" ng-show="ctrl.more">
+                {{item.text}}
+                <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="item.selected">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ion-view>
+      </ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Notes">
+      <ion-nav-view>
+        <ion-view>
+          <ion-content class="has-tabs">
+            <div class="list">
+              <label class="item item-input">
+                <textarea placeholder="Today, I was not the best versoin of my self by .." rows="10" ng-model="ctrl.freeInput"></textarea>
+              </label>
+            </div>
+          </ion-content>
+        </ion-view>
+      </ion-nav-view>
+    </ion-tab>
+  </ion-tabs>
+</ion-view>
+
+<script id="examin-s2-help.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Awareness</h1>
+      <button class="button button-clear" ng-click="ctrl.helpClose()"><i class="icon ion-close-round"></i></button>
+    </ion-header-bar>
+    <ion-content padding="true">
+      <p>Revisit the times in the past twenty-four hours when you were and were not the-best-version-of-your-self. Talk to God about these situations and what you learned from them.</p>
+    </ion-content>
+  </ion-modal-view>
+</script>

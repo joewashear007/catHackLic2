@@ -6,7 +6,8 @@ class ExaminCtrl {
     private $scope: ng.IRootScopeService,
     private itemService: catHacklic.examin.ItemService
     ) {
-    this.step = 0;
+    //TODO: fix this number
+    this.step = 4;
     this.$scope.$on('exam.step', () => this.step = this.itemService.examStep);
   }
 
@@ -66,6 +67,36 @@ class ExaminS1Ctrl {
   public helpClose() { this.helpModal.hide(); }
 }
 
+class ExaminS2Ctrl {
+  public static $inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
+
+  public items: catHacklic.examin.item[];
+  public allitems: catHacklic.examin.item[];
+  public helpModal: ionic.modal.IonicModalController;
+  public more : boolean;
+  constructor(
+    private $scope: ng.IScope,
+    private $state: ng.ui.IStateService,
+    private $ionicModal: ionic.modal.IonicModalService,
+    private itemService: catHacklic.examin.ItemService
+    ) {
+    itemService.examItems().then(q => this.items = q);
+    itemService.examItems(false).then(q => this.allitems = q);
+    $ionicModal.fromTemplateUrl('examin-s2-help.html', { scope: $scope }).then(m => this.helpModal = m);
+    this.freeInput = "";
+    this.more = false;
+  }
+  public help() { this.helpModal.show(); }
+  public helpClose() { this.helpModal.hide(); }
+  public freeInput: string;
+
+  public done() {
+    this.itemService.saveExamItems(this.items);
+    if (this.itemService.examStep < 3) { this.itemService.next(); }
+    this.$state.go('examin.home');
+  }
+}
+
 
 
 class ReviewCtrl {
@@ -92,5 +123,6 @@ angular.module('catHacklic.examin', [])
   .controller('ExaminCtrl', ExaminCtrl)
   .controller('ExaminS0Ctrl', ExaminS0Ctrl)
   .controller('ExaminS1Ctrl', ExaminS1Ctrl)
+  .controller('ExaminS2Ctrl', ExaminS2Ctrl)
   .controller('ReviewCtrl', ReviewCtrl)
 ;

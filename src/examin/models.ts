@@ -49,6 +49,8 @@ module catHacklic {
 
       /** Is the item selected on the current exam */
       selected?: boolean;
+      /** is the items shown based on the user day */
+      shown?: boolean;
     }
 
     export interface result {

@@ -60,45 +60,52 @@ module catHacklic {
       public get data() { return this._loadedData; }
       public get examStep() { return this._examStep; }
 
+      /** Returns the items need for the about today list */
       public get todayItems(): ng.IPromise<todayItem[]> {
         return this.data.then(q => q.today.filter(w => w.show));
       }
+
+      /**
+       * Return all of the items for the awarness section, filter by the about today selection
+       * @param [shown] returns the shown or not show list set
+       */
+      public examItems(shown?: boolean): ng.IPromise<item[]> {
+        if (typeof shown === "undefined") { shown = true; }
+        return this._filterExamItems().then(q => q.items.filter(w => w.shown == shown));
+      }
+
+      public saveExamItems(items: item[]): void {
+        // TODO: Somehting here?
+      }
+
       public saveTodayItems(items: todayItem[]): void {
-        this.data.then(q => q.today = items);
+        // this.data.then(q => q.today = items);
         if (this._examStep == 0) { this.next(); }
       }
 
+      /** Notifies the application that the next step of the examin is allowed */
       public next(): void {
         this._examStep++;
         this.$rootScope.$emit('exam.step');
       }
 
-
-      public buildConditions(base: basicExam): conditions {
-        var userInfo = this.UserSerivce.user;
-        return {
-          mass: base.mass,
-          sunday: (new Date()).getDay() === 0,
-          haveKids: userInfo.haveKids,
-          haveParents: userInfo.haveParents,
-          haveSpouce: userInfo.haveSpouce,
-          hadSex: base.hadSex,
-          hadImmoralThoughs: base.hadImmoralThoughs,
-          voted: base.voted,
-          student: base.student,
-          hadArgument: base.hadArgument
-        };
+      private _filterExamItems(): ng.IPromise<ILoadedData> {
+        return this.data.then(q => {
+          q.items.forEach(w => {
+            var conditionMet = false;
+            w.condition = w.condition || "";
+            if (w.condition != "") {
+              var conditions = w.condition.split(',');
+              conditionMet = q.today.some(p => p.selected && conditions.indexOf(p.condition) > -1);
+            }
+            w.shown = w.common > 0 || conditionMet;
+          });
+          return q;
+        });
       }
 
-      /** Return the basic exam questions */
-      public BasicExam(): ng.IPromise<item[]> {
-        return this.data.then(data => data.items.filter(q => q.commandment == -1));
-      }
 
-      /** Returns the detailed exam computed by on the BasicExam */
-      public DetailedExam(ids: number[]): item[] {
-        return [];
-      }
+
 
       /**
        * Returns the full exam
@@ -108,6 +115,7 @@ module catHacklic {
         skipDetailed = skipDetailed || true;
         return [];
       }
+
       private _checkArea(area: string) { this._curItem[area] = this._curItem[area] || []; }
 
       private _update(area: string) {

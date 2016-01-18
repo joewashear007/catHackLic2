@@ -6,6 +6,7 @@ angular.module('catHacklic', ['ionic', 'catHacklic.examin'])
         .state('examin.home', { url: '', templateUrl: 'examin/templates/index.html', controller: 'ExaminCtrl as ctrl' })
         .state('examin.s0', { url: '/s0', templateUrl: 'examin/templates/s0.html', controller: 'ExaminS0Ctrl as ctrl' })
         .state('examin.s1', { url: '/s1', templateUrl: 'examin/templates/s1.html', controller: 'ExaminS1Ctrl as ctrl' })
+        .state('examin.s2', { url: '/s2', templateUrl: 'examin/templates/s2.html', controller: 'ExaminS2Ctrl as ctrl' })
         .state('examin.review', { url: '/review', templateUrl: 'examin/templates/review.html', controller: 'ReviewCtrl as ctrl' });
     $urlRouterProvider.otherwise('/');
 })

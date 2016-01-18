@@ -3,7 +3,7 @@ var ExaminCtrl = (function () {
         var _this = this;
         this.$scope = $scope;
         this.itemService = itemService;
-        this.step = 0;
+        this.step = 4;
         this.$scope.$on('exam.step', function () { return _this.step = _this.itemService.examStep; });
     }
     ExaminCtrl.prototype.clear = function () { this.itemService.clear(); };
@@ -54,6 +54,31 @@ var ExaminS1Ctrl = (function () {
     ExaminS1Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
     return ExaminS1Ctrl;
 }());
+var ExaminS2Ctrl = (function () {
+    function ExaminS2Ctrl($scope, $state, $ionicModal, itemService) {
+        var _this = this;
+        this.$scope = $scope;
+        this.$state = $state;
+        this.$ionicModal = $ionicModal;
+        this.itemService = itemService;
+        itemService.examItems().then(function (q) { return _this.items = q; });
+        itemService.examItems(false).then(function (q) { return _this.allitems = q; });
+        $ionicModal.fromTemplateUrl('examin-s2-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
+        this.freeInput = "";
+        this.more = false;
+    }
+    ExaminS2Ctrl.prototype.help = function () { this.helpModal.show(); };
+    ExaminS2Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
+    ExaminS2Ctrl.prototype.done = function () {
+        this.itemService.saveExamItems(this.items);
+        if (this.itemService.examStep < 3) {
+            this.itemService.next();
+        }
+        this.$state.go('examin.home');
+    };
+    ExaminS2Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
+    return ExaminS2Ctrl;
+}());
 var ReviewCtrl = (function () {
     function ReviewCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
         this.$scope = $scope;
@@ -74,6 +99,7 @@ angular.module('catHacklic.examin', [])
     .controller('ExaminCtrl', ExaminCtrl)
     .controller('ExaminS0Ctrl', ExaminS0Ctrl)
     .controller('ExaminS1Ctrl', ExaminS1Ctrl)
+    .controller('ExaminS2Ctrl', ExaminS2Ctrl)
     .controller('ReviewCtrl', ReviewCtrl);
 
 
@@ -129,8 +155,15 @@ var catHacklic;
                 enumerable: true,
                 configurable: true
             });
+            ItemService.prototype.examItems = function (shown) {
+                if (typeof shown === "undefined") {
+                    shown = true;
+                }
+                return this._filterExamItems().then(function (q) { return q.items.filter(function (w) { return w.shown == shown; }); });
+            };
+            ItemService.prototype.saveExamItems = function (items) {
+            };
             ItemService.prototype.saveTodayItems = function (items) {
-                this.data.then(function (q) { return q.today = items; });
                 if (this._examStep == 0) {
                     this.next();
                 }
@@ -139,26 +172,19 @@ var catHacklic;
                 this._examStep++;
                 this.$rootScope.$emit('exam.step');
             };
-            ItemService.prototype.buildConditions = function (base) {
-                var userInfo = this.UserSerivce.user;
-                return {
-                    mass: base.mass,
-                    sunday: (new Date()).getDay() === 0,
-                    haveKids: userInfo.haveKids,
-                    haveParents: userInfo.haveParents,
-                    haveSpouce: userInfo.haveSpouce,
-                    hadSex: base.hadSex,
-                    hadImmoralThoughs: base.hadImmoralThoughs,
-                    voted: base.voted,
-                    student: base.student,
-                    hadArgument: base.hadArgument
-                };
-            };
-            ItemService.prototype.BasicExam = function () {
-                return this.data.then(function (data) { return data.items.filter(function (q) { return q.commandment == -1; }); });
-            };
-            ItemService.prototype.DetailedExam = function (ids) {
-                return [];
+            ItemService.prototype._filterExamItems = function () {
+                return this.data.then(function (q) {
+                    q.items.forEach(function (w) {
+                        var conditionMet = false;
+                        w.condition = w.condition || "";
+                        if (w.condition != "") {
+                            var conditions = w.condition.split(',');
+                            conditionMet = q.today.some(function (p) { return p.selected && conditions.indexOf(p.condition) > -1; });
+                        }
+                        w.shown = w.common > 0 || conditionMet;
+                    });
+                    return q;
+                });
             };
             ItemService.prototype.FullExam = function (skipDetailed) {
                 skipDetailed = skipDetailed || true;
