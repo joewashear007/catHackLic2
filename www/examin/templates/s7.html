@@ -1,0 +1,27 @@
+<ion-view title="Our Father">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="ctrl.help()"><i class="icon ion-help"></i></button>
+    <button class="button button-clear" ng-click="ctrl.done()"><i class="icon ion-checkmark-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="list">
+      <div class="item item-text-wrap">
+        Our Father, Who art in heaven Hallowed be Thy Name; Thy kingdom come, Thy will be done, on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation,
+        but deliver us from evil. Amen.
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="examin-s7-help.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Our Father</h1>
+      <button class="button button-clear" ng-click="ctrl.helpClose()"><i class="icon ion-close-round"></i></button>
+    </ion-header-bar>
+    <ion-content padding="true">
+      <p>Pray the Our Father</p>
+    </ion-content>
+  </ion-modal-view>
+</script>

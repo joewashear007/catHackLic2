@@ -1,0 +1,26 @@
+<ion-view title="Peace">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="ctrl.help()"><i class="icon ion-help"></i></button>
+    <button class="button button-clear" ng-click="ctrl.done()"><i class="icon ion-checkmark-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <textarea placeholder="Today, I ask for forgivness for ..." rows="10" ng-model="ctrl.notes"></textarea>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="examin-s4-help.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Peace</h1>
+      <button class="button button-clear" ng-click="ctrl.helpClose()"><i class="icon ion-close-round"></i></button>
+    </ion-header-bar>
+    <ion-content padding="true">
+      <p>Ask God to forgive you for any wrong you have committed (against yourself, another person, or Him) and to fill you with a deep and abiding peace.</p>
+    </ion-content>
+  </ion-modal-view>
+</script>

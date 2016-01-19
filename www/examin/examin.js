@@ -23,9 +23,10 @@ var BaseExaminCtrl = (function () {
         this.$state = $state;
         this.$ionicModal = $ionicModal;
         this.itemService = itemService;
-        this.notes = "";
         this.items = [];
+        console.log("Loading Ctrl: " + this.stepNum);
         $ionicModal.fromTemplateUrl("examin-s" + this.stepNum + "-help.html", { scope: $scope }).then(function (m) { return _this.helpModal = m; });
+        itemService.getNote(this.stepNum).then(function (q) { return _this.notes = q; });
     }
     BaseExaminCtrl.prototype.help = function () { this.helpModal.show(); };
     BaseExaminCtrl.prototype.helpClose = function () { this.helpModal.hide(); };
@@ -77,6 +78,46 @@ var ExaminS2Ctrl = (function (_super) {
     };
     return ExaminS2Ctrl;
 }(BaseExaminCtrl));
+var ExaminS3Ctrl = (function (_super) {
+    __extends(ExaminS3Ctrl, _super);
+    function ExaminS3Ctrl($scope, $state, $ionicModal, itemService) {
+        this.stepNum = 3;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+    }
+    return ExaminS3Ctrl;
+}(BaseExaminCtrl));
+var ExaminS4Ctrl = (function (_super) {
+    __extends(ExaminS4Ctrl, _super);
+    function ExaminS4Ctrl($scope, $state, $ionicModal, itemService) {
+        this.stepNum = 4;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+    }
+    return ExaminS4Ctrl;
+}(BaseExaminCtrl));
+var ExaminS5Ctrl = (function (_super) {
+    __extends(ExaminS5Ctrl, _super);
+    function ExaminS5Ctrl($scope, $state, $ionicModal, itemService) {
+        this.stepNum = 5;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+    }
+    return ExaminS5Ctrl;
+}(BaseExaminCtrl));
+var ExaminS6Ctrl = (function (_super) {
+    __extends(ExaminS6Ctrl, _super);
+    function ExaminS6Ctrl($scope, $state, $ionicModal, itemService) {
+        this.stepNum = 6;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+    }
+    return ExaminS6Ctrl;
+}(BaseExaminCtrl));
+var ExaminS7Ctrl = (function (_super) {
+    __extends(ExaminS7Ctrl, _super);
+    function ExaminS7Ctrl($scope, $state, $ionicModal, itemService) {
+        this.stepNum = 7;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+    }
+    return ExaminS7Ctrl;
+}(BaseExaminCtrl));
 var ReviewCtrl = (function () {
     function ReviewCtrl($scope, $state, itemService) {
         var _this = this;
@@ -97,6 +138,11 @@ angular.module('catHacklic.examin', [])
     .controller('ExaminS0Ctrl', ExaminS0Ctrl)
     .controller('ExaminS1Ctrl', ExaminS1Ctrl)
     .controller('ExaminS2Ctrl', ExaminS2Ctrl)
+    .controller('ExaminS3Ctrl', ExaminS3Ctrl)
+    .controller('ExaminS4Ctrl', ExaminS4Ctrl)
+    .controller('ExaminS5Ctrl', ExaminS5Ctrl)
+    .controller('ExaminS6Ctrl', ExaminS6Ctrl)
+    .controller('ExaminS7Ctrl', ExaminS7Ctrl)
     .controller('ReviewCtrl', ReviewCtrl);
 
 
@@ -168,6 +214,9 @@ var catHacklic;
             };
             ItemService.prototype.saveNote = function (id, note) {
                 return this.data.then(function (d) { d.notes[id] = note; return d.notes; });
+            };
+            ItemService.prototype.getNote = function (id) {
+                return this.data.then(function (d) { return d.notes[id]; });
             };
             ItemService.prototype.next = function () {
                 this._examStep++;

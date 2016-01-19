@@ -89,6 +89,10 @@ module catHacklic {
         return this.data.then(d => { d.notes[id] = note; return d.notes; });
       }
 
+      public getNote(id: number): ng.IPromise<string> {
+        return this.data.then(d => d.notes[id]);
+      }
+
       /** Notifies the application that the next step of the examin is allowed */
       public next(): void {
         this._examStep++;

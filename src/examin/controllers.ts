@@ -28,9 +28,10 @@ class BaseExaminCtrl {
     protected $ionicModal: ionic.modal.IonicModalService,
     protected itemService: catHacklic.examin.ItemService
     ) {
-    this.notes = "";
     this.items = [];
+    console.log(`Loading Ctrl: ${this.stepNum}`);
     $ionicModal.fromTemplateUrl(`examin-s${this.stepNum}-help.html`, { scope: $scope }).then(m => this.helpModal = m);
+    itemService.getNote(this.stepNum).then(q => this.notes = q);
   }
 
   public help() { this.helpModal.show(); }
@@ -83,7 +84,40 @@ class ExaminS2Ctrl extends BaseExaminCtrl{
   }
 }
 
+class ExaminS3Ctrl extends BaseExaminCtrl {
+  constructor($scope, $state, $ionicModal, itemService) {
+    this.stepNum = 3;
+    super($scope, $state, $ionicModal, itemService);
+  }
+}
 
+class ExaminS4Ctrl extends BaseExaminCtrl {
+  constructor($scope, $state, $ionicModal, itemService) {
+    this.stepNum = 4;
+    super($scope, $state, $ionicModal, itemService);
+  }
+}
+
+class ExaminS5Ctrl extends BaseExaminCtrl {
+  constructor($scope, $state, $ionicModal, itemService) {
+    this.stepNum = 5;
+    super($scope, $state, $ionicModal, itemService);
+  }
+}
+
+class ExaminS6Ctrl extends BaseExaminCtrl {
+  constructor($scope, $state, $ionicModal, itemService) {
+    this.stepNum = 6;
+    super($scope, $state, $ionicModal, itemService);
+  }
+}
+
+class ExaminS7Ctrl extends BaseExaminCtrl {
+  constructor($scope, $state, $ionicModal, itemService) {
+    this.stepNum = 7;
+    super($scope, $state, $ionicModal, itemService);
+  }
+}
 
 class ReviewCtrl {
   summary: catHacklic.examin.summary;
@@ -107,5 +141,10 @@ angular.module('catHacklic.examin', [])
   .controller('ExaminS0Ctrl', ExaminS0Ctrl)
   .controller('ExaminS1Ctrl', ExaminS1Ctrl)
   .controller('ExaminS2Ctrl', ExaminS2Ctrl)
+  .controller('ExaminS3Ctrl', ExaminS3Ctrl)
+  .controller('ExaminS4Ctrl', ExaminS4Ctrl)
+  .controller('ExaminS5Ctrl', ExaminS5Ctrl)
+  .controller('ExaminS6Ctrl', ExaminS6Ctrl)
+  .controller('ExaminS7Ctrl', ExaminS7Ctrl)
   .controller('ReviewCtrl', ReviewCtrl)
 ;

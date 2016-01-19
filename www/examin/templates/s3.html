@@ -1,0 +1,26 @@
+<ion-view title="Significant Moments">
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="ctrl.help()"><i class="icon ion-help"></i></button>
+    <button class="button button-clear" ng-click="ctrl.done()"><i class="icon ion-checkmark-round"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <textarea placeholder="Today, God is telling me ..." rows="10" ng-model="ctrl.notes"></textarea>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="examin-s3-help.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Significant Moments</h1>
+      <button class="button button-clear" ng-click="ctrl.helpClose()"><i class="icon ion-close-round"></i></button>
+    </ion-header-bar>
+    <ion-content padding="true">
+      <p>Identify something you experienced in the last twenty-four hours and explore what God might be trying to say to you through that event (or person).</p>
+    </ion-content>
+  </ion-modal-view>
+</script>
