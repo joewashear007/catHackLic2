@@ -76,7 +76,7 @@ module catHacklic {
         return this._filterExamItems().then(q => q.items.filter(w => w.shown == shown));
       }
 
-      public saveExamItems(items: item[]): void {
+      public saveExamItems(items: Iitem[]): void {
         // TODO: Somehting here?
       }
 

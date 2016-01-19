@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var ExaminCtrl = (function () {
     function ExaminCtrl($scope, itemService) {
         var _this = this;
@@ -11,74 +16,67 @@ var ExaminCtrl = (function () {
     ExaminCtrl.$inject = ["$rootScope", "ItemService"];
     return ExaminCtrl;
 }());
-var ExaminS0Ctrl = (function () {
+var BaseExaminCtrl = (function () {
+    function BaseExaminCtrl($scope, $state, $ionicModal, itemService) {
+        var _this = this;
+        this.$scope = $scope;
+        this.$state = $state;
+        this.$ionicModal = $ionicModal;
+        this.itemService = itemService;
+        this.notes = "";
+        this.items = [];
+        $ionicModal.fromTemplateUrl("examin-s" + this.stepNum + "-help.html", { scope: $scope }).then(function (m) { return _this.helpModal = m; });
+    }
+    BaseExaminCtrl.prototype.help = function () { this.helpModal.show(); };
+    BaseExaminCtrl.prototype.helpClose = function () { this.helpModal.hide(); };
+    BaseExaminCtrl.prototype.done = function () {
+        this.itemService.saveNote(this.stepNum, this.notes);
+        if (this.itemService.examStep <= this.stepNum) {
+            this.itemService.next();
+        }
+        this.$state.go('examin.home');
+    };
+    BaseExaminCtrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
+    return BaseExaminCtrl;
+}());
+var ExaminS0Ctrl = (function (_super) {
+    __extends(ExaminS0Ctrl, _super);
     function ExaminS0Ctrl($scope, $state, $ionicModal, itemService) {
         var _this = this;
-        this.$scope = $scope;
-        this.$state = $state;
-        this.$ionicModal = $ionicModal;
-        this.itemService = itemService;
-        itemService.todayItems.then(function (q) { return _this.items = q; });
-        $ionicModal.fromTemplateUrl('examin-s0-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
+        this.stepNum = 0;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+        this.itemService.todayItems.then(function (q) { return _this.items = q; });
     }
     ExaminS0Ctrl.prototype.done = function () {
-        console.log(this.items.filter(function (q) { return q.selected; }));
         this.itemService.saveTodayItems(this.items);
-        this.$state.go('examin.home');
+        _super.prototype.done.call(this);
     };
-    ExaminS0Ctrl.prototype.help = function () { this.helpModal.show(); };
-    ExaminS0Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
-    ExaminS0Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
     return ExaminS0Ctrl;
-}());
-var ExaminS1Ctrl = (function () {
+}(BaseExaminCtrl));
+var ExaminS1Ctrl = (function (_super) {
+    __extends(ExaminS1Ctrl, _super);
     function ExaminS1Ctrl($scope, $state, $ionicModal, itemService) {
-        var _this = this;
-        this.$scope = $scope;
-        this.$state = $state;
-        this.$ionicModal = $ionicModal;
-        this.itemService = itemService;
-        $ionicModal.fromTemplateUrl('examin-s1-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
-        this.notes = "";
+        this.stepNum = 1;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
     }
-    ExaminS1Ctrl.prototype.done = function () {
-        this.itemService.saveNote(1, this.notes);
-        if (this.itemService.examStep < 2) {
-            this.itemService.next();
-        }
-        this.$state.go('examin.home');
-    };
-    ExaminS1Ctrl.prototype.help = function () { this.helpModal.show(); };
-    ExaminS1Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
-    ExaminS1Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
     return ExaminS1Ctrl;
-}());
-var ExaminS2Ctrl = (function () {
+}(BaseExaminCtrl));
+var ExaminS2Ctrl = (function (_super) {
+    __extends(ExaminS2Ctrl, _super);
     function ExaminS2Ctrl($scope, $state, $ionicModal, itemService) {
         var _this = this;
-        this.$scope = $scope;
-        this.$state = $state;
-        this.$ionicModal = $ionicModal;
-        this.itemService = itemService;
-        itemService.examItems().then(function (q) { return _this.items = q; });
-        itemService.examItems(false).then(function (q) { return _this.allitems = q; });
-        $ionicModal.fromTemplateUrl('examin-s2-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
-        this.notes = "";
+        this.stepNum = 2;
+        _super.call(this, $scope, $state, $ionicModal, itemService);
+        this.itemService.examItems().then(function (q) { return _this.items = q; });
+        this.itemService.examItems(false).then(function (q) { return _this.allitems = q; });
         this.more = false;
     }
-    ExaminS2Ctrl.prototype.help = function () { this.helpModal.show(); };
-    ExaminS2Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
     ExaminS2Ctrl.prototype.done = function () {
-        this.itemService.saveNote(2, this.notes);
         this.itemService.saveExamItems(this.items);
-        if (this.itemService.examStep < 3) {
-            this.itemService.next();
-        }
-        this.$state.go('examin.home');
+        _super.prototype.done.call(this);
     };
-    ExaminS2Ctrl.$inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
     return ExaminS2Ctrl;
-}());
+}(BaseExaminCtrl));
 var ReviewCtrl = (function () {
     function ReviewCtrl($scope, $state, itemService) {
         var _this = this;

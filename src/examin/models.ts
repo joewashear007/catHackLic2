@@ -17,15 +17,21 @@ module catHacklic {
       hadArgument: boolean;
     }
 
-    export interface todayItem {
+    export interface Iitem {
+      /** The text displayed on the main list */
       text: string;
-      condition: string;
+      /** Is the item selected on the current exam */
       selected: boolean;
+
+    }
+
+    export interface todayItem extends Iitem{
+      condition: string;
       show: boolean;
       config: boolean;
     }
 
-    export interface item {
+    export interface item extends Iitem{
       /** The id of the item */
       id: number;
       /** how common is this item */
@@ -34,8 +40,6 @@ module catHacklic {
       commandment?: number;
       /** The parent item to when going in more detail */
       parent?: number;
-      /** The text displayed on the main list */
-      text: string;
       /** a string condition that will force this to be shown */
       condition?: string;
       /** What vice this item falls under */
@@ -45,8 +49,6 @@ module catHacklic {
       /** A detailed description of the particular item */
       details?: string;
 
-      /** Is the item selected on the current exam */
-      selected?: boolean;
       /** is the items shown based on the user day */
       shown?: boolean;
     }
