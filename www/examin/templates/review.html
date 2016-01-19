@@ -5,16 +5,38 @@
   </ion-nav-buttons> -->
   <ion-content>
     <ion-list>
-      <div class="item item-divider"> Blessings </div>
-      <ion-item ng-repeat="item in ctrl.summary.blessing"> {{item.text}} </ion-item>
-      <div class="item item-divider"> Favors </div>
-      <ion-item ng-repeat="item in ctrl.summary.ask"> {{item.text}} </ion-item>
-      <div class="item item-divider"> Faults </div>
-      <ion-item ng-repeat="item in ctrl.summary.kill"> {{item.text}} </ion-item>
-      <div class="item item-divider"> Thoughts </div>
-      <ion-item ng-repeat="item in ctrl.summary.embrace"> {{item.text}} </ion-item>
-      <div class="item item-divider"> Resolutions </div>
-      <ion-item ng-repeat="item in ctrl.summary.resolution"> {{item.text}} </ion-item>
+      <div class="item item-divider"> About Today </div>
+      <ion-item ng-repeat="item in ctrl.summary[0].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[0].note"> <b>Note:</b> {{ctrl.summary[0].note}} </ion-item>
+
+
+      <div class="item item-divider"> Gratitude </div>
+      <ion-item ng-repeat="item in ctrl.summary[1].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[1].note"> <b>Note:</b> {{ctrl.summary[1].note}} </ion-item>
+
+      <div class="item item-divider"> Awareness </div>
+      <ion-item ng-repeat="item in ctrl.summary[2].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[2].note"> <b>Note:</b> {{ctrl.summary[2].note}} </ion-item>
+
+      <div class="item item-divider"> Significant Moments </div>
+      <ion-item ng-repeat="item in ctrl.summary[3].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[3].note"> <b>Note:</b> {{ctrl.summary[3].note}} </ion-item>
+
+      <div class="item item-divider"> Peace </div>
+      <ion-item ng-repeat="item in ctrl.summary[4].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[4].note"> <b>Note:</b> {{ctrl.summary[4].note}} </ion-item>
+
+      <div class="item item-divider"> Freedom </div>
+      <ion-item ng-repeat="item in ctrl.summary[5].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[5].note"> <b>Note:</b> {{ctrl.summary[5].note}} </ion-item>
+
+      <div class="item item-divider"> Others </div>
+      <ion-item ng-repeat="item in ctrl.summary[6].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[6].note"> <b>Note:</b> {{ctrl.summary[6].note}} </ion-item>
+
+      <div class="item item-divider"> Our Father </div>
+      <ion-item ng-repeat="item in ctrl.summary[7].items"> {{item.text}} </ion-item>
+      <ion-item class="item-text-wrap" ng-show="ctrl.summary[7].note"> <b>Note:</b> {{ctrl.summary[7].note}} </ion-item>
     </ion-list>
     <div class="padding">
       <button class="button button-block button-positive" ng-click="ctrl.submit()">Submit</button>

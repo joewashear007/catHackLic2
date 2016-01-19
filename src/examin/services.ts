@@ -5,6 +5,7 @@ module catHacklic {
     interface ILoadedData {
       items: item[],
       today: todayItem[]
+      notes: string[]
     }
 
 
@@ -50,7 +51,8 @@ module catHacklic {
           this._loadedData = this.$q.all([loadedItems, loadedTodayItems]).then<ILoadedData>((results: any[]) => {
             return {
               items: results[0],
-              today: results[1]
+              today: results[1],
+              notes: []
             }
           });
         }
@@ -83,6 +85,10 @@ module catHacklic {
         if (this._examStep == 0) { this.next(); }
       }
 
+      public saveNote(id: number, note: string): ng.IPromise<string[]> {
+        return this.data.then(d => { d.notes[id] = note; return d.notes; });
+      }
+
       /** Notifies the application that the next step of the examin is allowed */
       public next(): void {
         this._examStep++;
@@ -105,82 +111,41 @@ module catHacklic {
       }
 
 
-
-
-      /**
-       * Returns the full exam
-       * @param skipDetailed Skips the exam items that were given by the detailed exam
-       */
-      public FullExam(skipDetailed: boolean): item[] {
-        skipDetailed = skipDetailed || true;
-        return [];
-      }
-
-      private _checkArea(area: string) { this._curItem[area] = this._curItem[area] || []; }
-
-      private _update(area: string) {
-        localStorage['ItemService'] = angular.toJson(this._curItem);
-        this.$rootScope.$broadcast('ItemService', area);
-      }
-
-      public add(area: string, item: item): ItemService {
-        this._checkArea(area);
-        console.info(this._curItem);
-        this._curItem[area].push(item);
-        this._update(area);
-        return this;
-      }
-
-      public get(area: string): item[] {
-        this._checkArea(area);
-        return this._curItem[area];
+      public save(): ng.IPromise<any> {
+        console.warn("NOT IMPLEMENTED");
+        return this.data;
       }
 
 
-      public edit(area: string, index: number, item: item): ItemService {
-        this._checkArea(area);
-        this._curItem[area][index] = item;
-        this._update(area);
-        return this;
-      }
-
-      public delete(area: string, index: number): ItemService {
-        this._checkArea(area);
-        this._curItem[area].splice(index, 1);
-        this._update(area);
-        return this;
-      }
-
-      public save(): ItemService {
-        var data = JSON.parse(localStorage.getItem('history')) || [];
-        data.push(this.summary());
-        localStorage['history'] = JSON.stringify(data);
-        return this.clear();
-      }
-
-      public load(): ItemService {
-        this._curItem = JSON.parse(localStorage.getItem('ItemService')) || {};
-        return this.clear();
-      }
-
-      public clear(): ItemService {
-        Object.keys(this._curItem).forEach(q => {
-          this._curItem[q].forEach(w => w.selected = false);
+      public clear(): ng.IPromise<ILoadedData> {
+        return this.data.then(q => {
+          q.items.forEach(w => w.selected = false);
+          q.today.forEach(w => w.selected = false);
+          return q;
         });
-        this.$rootScope.$broadcast('ItemService');
-        return this;
       }
 
-      public summary(): summary {
-        var summary: summary = {};
-        for (var q in this._curItem) {
-          summary[q] = this._curItem[q].filter(w => w.selected);
-        }
-        return summary;
-      }
+      public summary(): ng.IPromise<examin.summary> {
+        return this.data.then(d => {
+          console.log("Summary!", d.notes);
+          var summary: examin.summary = [];
 
-      public reset() {
-        this._curItem["kill"] = starter;
+          var todayItemsSummary: { text: string }[] = [];
+          d.today.forEach(q => { if (q.selected) { todayItemsSummary.push({ text: q.text, }) } });
+          var awarnessItems: { text: string }[] = []
+          d.items.forEach(q => { if (q.selected) { todayItemsSummary.push({ text: q.text, }) } });
+
+          summary.push({ note: d.notes[0], items: todayItemsSummary });
+          summary.push({ note: d.notes[1], items: [] });
+          summary.push({ note: d.notes[2], items: awarnessItems });
+          summary.push({ note: d.notes[3], items: [] });
+          summary.push({ note: d.notes[4], items: [] });
+          summary.push({ note: d.notes[5], items: [] });
+          summary.push({ note: d.notes[6], items: [] });
+          summary.push({ note: d.notes[7], items: [] });
+
+          return summary;
+        });
       }
     }
   }

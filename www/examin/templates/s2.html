@@ -8,7 +8,7 @@
     <ion-tab title="List">
       <ion-nav-view>
         <ion-view>
-          <ion-content class="has-tabs has-header">
+          <ion-content>
             <ion-list>
               <ion-item class="item-text-wrap item-toggle" ng-repeat="item in ctrl.items">
                 {{item.text}}
@@ -38,10 +38,10 @@
     <ion-tab title="Notes">
       <ion-nav-view>
         <ion-view>
-          <ion-content class="has-tabs">
+          <ion-content>
             <div class="list">
               <label class="item item-input">
-                <textarea placeholder="Today, I was not the best versoin of my self by .." rows="10" ng-model="ctrl.freeInput"></textarea>
+                <textarea placeholder="Today, I was not the best version of my self by .." rows="10" ng-model="ctrl.notes"></textarea>
               </label>
             </div>
           </ion-content>

@@ -3,12 +3,10 @@ var ExaminCtrl = (function () {
         var _this = this;
         this.$scope = $scope;
         this.itemService = itemService;
-        this.step = 4;
+        this.step = this.itemService.examStep;
         this.$scope.$on('exam.step', function () { return _this.step = _this.itemService.examStep; });
     }
     ExaminCtrl.prototype.clear = function () { this.itemService.clear(); };
-    ;
-    ExaminCtrl.prototype.reset = function () { this.itemService.reset(); };
     ;
     ExaminCtrl.$inject = ["$rootScope", "ItemService"];
     return ExaminCtrl;
@@ -41,9 +39,10 @@ var ExaminS1Ctrl = (function () {
         this.$ionicModal = $ionicModal;
         this.itemService = itemService;
         $ionicModal.fromTemplateUrl('examin-s1-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
-        this.freeInput = "";
+        this.notes = "";
     }
     ExaminS1Ctrl.prototype.done = function () {
+        this.itemService.saveNote(1, this.notes);
         if (this.itemService.examStep < 2) {
             this.itemService.next();
         }
@@ -64,12 +63,13 @@ var ExaminS2Ctrl = (function () {
         itemService.examItems().then(function (q) { return _this.items = q; });
         itemService.examItems(false).then(function (q) { return _this.allitems = q; });
         $ionicModal.fromTemplateUrl('examin-s2-help.html', { scope: $scope }).then(function (m) { return _this.helpModal = m; });
-        this.freeInput = "";
+        this.notes = "";
         this.more = false;
     }
     ExaminS2Ctrl.prototype.help = function () { this.helpModal.show(); };
     ExaminS2Ctrl.prototype.helpClose = function () { this.helpModal.hide(); };
     ExaminS2Ctrl.prototype.done = function () {
+        this.itemService.saveNote(2, this.notes);
         this.itemService.saveExamItems(this.items);
         if (this.itemService.examStep < 3) {
             this.itemService.next();
@@ -80,19 +80,18 @@ var ExaminS2Ctrl = (function () {
     return ExaminS2Ctrl;
 }());
 var ReviewCtrl = (function () {
-    function ReviewCtrl($scope, itemService, $ionicListDelegate, $ionicModal, $state) {
+    function ReviewCtrl($scope, $state, itemService) {
+        var _this = this;
         this.$scope = $scope;
-        this.itemService = itemService;
-        this.$ionicListDelegate = $ionicListDelegate;
-        this.$ionicModal = $ionicModal;
         this.$state = $state;
-        this.summary = itemService.summary();
+        this.itemService = itemService;
+        itemService.summary().then(function (q) { _this.summary = q; });
     }
     ReviewCtrl.prototype.submit = function () {
-        this.itemService.save();
-        this.$state.go('home');
+        var _this = this;
+        this.itemService.save().then(function () { return _this.$state.go('home'); });
     };
-    ReviewCtrl.$inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+    ReviewCtrl.$inject = ["$scope", "$state", "ItemService"];
     return ReviewCtrl;
 }());
 angular.module('catHacklic.examin', [])
@@ -132,7 +131,8 @@ var catHacklic;
                     this._loadedData = this.$q.all([loadedItems, loadedTodayItems]).then(function (results) {
                         return {
                             items: results[0],
-                            today: results[1]
+                            today: results[1],
+                            notes: []
                         };
                     });
                 }
@@ -168,6 +168,9 @@ var catHacklic;
                     this.next();
                 }
             };
+            ItemService.prototype.saveNote = function (id, note) {
+                return this.data.then(function (d) { d.notes[id] = note; return d.notes; });
+            };
             ItemService.prototype.next = function () {
                 this._examStep++;
                 this.$rootScope.$emit('exam.step');
@@ -186,65 +189,39 @@ var catHacklic;
                     return q;
                 });
             };
-            ItemService.prototype.FullExam = function (skipDetailed) {
-                skipDetailed = skipDetailed || true;
-                return [];
-            };
-            ItemService.prototype._checkArea = function (area) { this._curItem[area] = this._curItem[area] || []; };
-            ItemService.prototype._update = function (area) {
-                localStorage['ItemService'] = angular.toJson(this._curItem);
-                this.$rootScope.$broadcast('ItemService', area);
-            };
-            ItemService.prototype.add = function (area, item) {
-                this._checkArea(area);
-                console.info(this._curItem);
-                this._curItem[area].push(item);
-                this._update(area);
-                return this;
-            };
-            ItemService.prototype.get = function (area) {
-                this._checkArea(area);
-                return this._curItem[area];
-            };
-            ItemService.prototype.edit = function (area, index, item) {
-                this._checkArea(area);
-                this._curItem[area][index] = item;
-                this._update(area);
-                return this;
-            };
-            ItemService.prototype.delete = function (area, index) {
-                this._checkArea(area);
-                this._curItem[area].splice(index, 1);
-                this._update(area);
-                return this;
-            };
             ItemService.prototype.save = function () {
-                var data = JSON.parse(localStorage.getItem('history')) || [];
-                data.push(this.summary());
-                localStorage['history'] = JSON.stringify(data);
-                return this.clear();
-            };
-            ItemService.prototype.load = function () {
-                this._curItem = JSON.parse(localStorage.getItem('ItemService')) || {};
-                return this.clear();
+                console.warn("NOT IMPLEMENTED");
+                return this.data;
             };
             ItemService.prototype.clear = function () {
-                var _this = this;
-                Object.keys(this._curItem).forEach(function (q) {
-                    _this._curItem[q].forEach(function (w) { return w.selected = false; });
+                return this.data.then(function (q) {
+                    q.items.forEach(function (w) { return w.selected = false; });
+                    q.today.forEach(function (w) { return w.selected = false; });
+                    return q;
                 });
-                this.$rootScope.$broadcast('ItemService');
-                return this;
             };
             ItemService.prototype.summary = function () {
-                var summary = {};
-                for (var q in this._curItem) {
-                    summary[q] = this._curItem[q].filter(function (w) { return w.selected; });
-                }
-                return summary;
-            };
-            ItemService.prototype.reset = function () {
-                this._curItem["kill"] = starter;
+                return this.data.then(function (d) {
+                    console.log("Summary!", d.notes);
+                    var summary = [];
+                    var todayItemsSummary = [];
+                    d.today.forEach(function (q) { if (q.selected) {
+                        todayItemsSummary.push({ text: q.text, });
+                    } });
+                    var awarnessItems = [];
+                    d.items.forEach(function (q) { if (q.selected) {
+                        todayItemsSummary.push({ text: q.text, });
+                    } });
+                    summary.push({ note: d.notes[0], items: todayItemsSummary });
+                    summary.push({ note: d.notes[1], items: [] });
+                    summary.push({ note: d.notes[2], items: awarnessItems });
+                    summary.push({ note: d.notes[3], items: [] });
+                    summary.push({ note: d.notes[4], items: [] });
+                    summary.push({ note: d.notes[5], items: [] });
+                    summary.push({ note: d.notes[6], items: [] });
+                    summary.push({ note: d.notes[7], items: [] });
+                    return summary;
+                });
             };
             ItemService.$inject = ["$rootScope", "$q", "$http", "UserSerivce"];
             return ItemService;

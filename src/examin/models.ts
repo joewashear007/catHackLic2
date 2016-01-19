@@ -16,8 +16,6 @@ module catHacklic {
       student: boolean;
       hadArgument: boolean;
     }
-    export interface conditions extends basicExam {
-    }
 
     export interface todayItem {
       text: string;
@@ -59,8 +57,6 @@ module catHacklic {
       submissionDate: Date;
 
     }
-    export interface summary {
-      [index: string]: item[]
-    }
+    export type summary = { note: string, items: { text: string }[] }[]
   }
 }

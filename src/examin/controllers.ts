@@ -6,13 +6,11 @@ class ExaminCtrl {
     private $scope: ng.IRootScopeService,
     private itemService: catHacklic.examin.ItemService
     ) {
-    //TODO: fix this number
-    this.step = 4;
+    this.step = this.itemService.examStep;
     this.$scope.$on('exam.step', () => this.step = this.itemService.examStep);
   }
 
   public clear() { this.itemService.clear(); };
-  public reset() { this.itemService.reset(); };
 }
 
 class ExaminS0Ctrl {
@@ -42,8 +40,7 @@ class ExaminS0Ctrl {
 
 class ExaminS1Ctrl {
   public static $inject = ['$scope', '$state', '$ionicModal', 'ItemService'];
-  public freeInput: string;
-  // public items: catHacklic.examin.todayItem[];
+  public notes: string;
   public helpModal: ionic.modal.IonicModalController;
 
   constructor(
@@ -54,11 +51,11 @@ class ExaminS1Ctrl {
     ) {
     // itemService.todayItems.then(q => this.items = q);
     $ionicModal.fromTemplateUrl('examin-s1-help.html', { scope: $scope }).then(m => this.helpModal = m);
-    this.freeInput = "";
+    this.notes = "";
   }
 
   public done() {
-    // this.itemService.saveTodayItems(this.items);
+    this.itemService.saveNote(1, this.notes);
     if (this.itemService.examStep < 2) { this.itemService.next(); }
     this.$state.go('examin.home');
   }
@@ -73,7 +70,7 @@ class ExaminS2Ctrl {
   public items: catHacklic.examin.item[];
   public allitems: catHacklic.examin.item[];
   public helpModal: ionic.modal.IonicModalController;
-  public more : boolean;
+  public more: boolean;
   constructor(
     private $scope: ng.IScope,
     private $state: ng.ui.IStateService,
@@ -83,14 +80,15 @@ class ExaminS2Ctrl {
     itemService.examItems().then(q => this.items = q);
     itemService.examItems(false).then(q => this.allitems = q);
     $ionicModal.fromTemplateUrl('examin-s2-help.html', { scope: $scope }).then(m => this.helpModal = m);
-    this.freeInput = "";
+    this.notes = "";
     this.more = false;
   }
   public help() { this.helpModal.show(); }
   public helpClose() { this.helpModal.hide(); }
-  public freeInput: string;
+  public notes: string;
 
   public done() {
+    this.itemService.saveNote(2, this.notes);
     this.itemService.saveExamItems(this.items);
     if (this.itemService.examStep < 3) { this.itemService.next(); }
     this.$state.go('examin.home');
@@ -100,22 +98,19 @@ class ExaminS2Ctrl {
 
 
 class ReviewCtrl {
-  summary: any;
+  summary: catHacklic.examin.summary;
 
-  public static $inject = ["$scope", "ItemService", "$ionicListDelegate", "$ionicModal", "$state"];
+  public static $inject = ["$scope", "$state", "ItemService"];
   constructor(
     private $scope: ng.IScope,
-    private itemService: catHacklic.examin.ItemService,
-    private $ionicListDelegate: ionic.list.IonicListDelegate,
-    private $ionicModal: ionic.modal.IonicModalService,
-    private $state: ng.ui.IStateService
+    private $state: ng.ui.IStateService,
+    private itemService: catHacklic.examin.ItemService
     ) {
-    this.summary = itemService.summary();
+    itemService.summary().then(q => { this.summary = q; });
   }
 
   public submit() {
-    this.itemService.save();
-    this.$state.go('home');
+    this.itemService.save().then(() => this.$state.go('home'));
   }
 }
 
