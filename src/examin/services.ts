@@ -116,8 +116,20 @@ module catHacklic {
 
 
       public save(): ng.IPromise<any> {
-        console.warn("NOT IMPLEMENTED");
-        return this.data;
+        var pastExams: examHistoryItem[] = JSON.parse(localStorage['v1.exam.history'] || "[]");
+        var now = new Date();
+        var submitDate = new Date();
+        // back up the time from 4 hours to make the date even if taking th exam at 2 am
+        submitDate.setHours(now.getHours() - 4);
+        return this.summary().then(q => {
+          pastExams.push({
+            date: now,
+            submissionDate: submitDate,
+            summary: q
+          });
+          localStorage['v1.exam.history'] = JSON.stringify(pastExams);
+          return pastExams[pastExams.length -1];
+        });
       }
 
 

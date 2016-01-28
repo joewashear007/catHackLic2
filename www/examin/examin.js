@@ -237,8 +237,19 @@ var catHacklic;
                 });
             };
             ItemService.prototype.save = function () {
-                console.warn("NOT IMPLEMENTED");
-                return this.data;
+                var pastExams = JSON.parse(localStorage['v1.exam.history'] || "[]");
+                var now = new Date();
+                var submitDate = new Date();
+                submitDate.setHours(now.getHours() - 4);
+                return this.summary().then(function (q) {
+                    pastExams.push({
+                        date: now,
+                        submissionDate: submitDate,
+                        summary: q
+                    });
+                    localStorage['v1.exam.history'] = JSON.stringify(pastExams);
+                    return pastExams[pastExams.length - 1];
+                });
             };
             ItemService.prototype.clear = function () {
                 return this.data.then(function (q) {

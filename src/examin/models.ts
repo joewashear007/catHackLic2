@@ -53,12 +53,11 @@ module catHacklic {
       shown?: boolean;
     }
 
-    export interface result {
+    export type summary = { note: string, items: { text: string }[] }[]
+    export interface examHistoryItem {
       summary: summary;
       date: Date;
-      submissionDate: Date;
-
+      submissionDate: Date;      
     }
-    export type summary = { note: string, items: { text: string }[] }[]
   }
 }
