@@ -2,7 +2,7 @@
   {
     "text": "Went to Mass",
     "condition": "mass",
-    "selected": true,
+    "selected": false,
     "show": true,
     "config": false
   },
