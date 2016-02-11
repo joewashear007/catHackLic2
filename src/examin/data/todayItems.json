@@ -1,135 +1,258 @@
 [
   {
-    "text": "Went to Mass",
-    "condition": "mass",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Went to Confession",
-    "condition": "confession",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Went to Funeral",
-    "condition": "funeral",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Voted Today",
-    "condition": "vote",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Is Sunday or Holy Day",
-    "condition": "sunday",
-    "selected": false,
-    "show": false,
-    "config": false
-  },
-  {
     "text": "Argued with Someone",
     "condition": "argument",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Watched Movies / TV",
-    "condition": "movie",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Had Sex",
-    "condition": "sex",
-    "selected": false,
-    "show": true,
-    "config": false
-  },
-  {
-    "text": "Have Kids",
-    "condition": "haveKids",
-    "selected": false,
-    "show": false,
-    "config": true
-  },
-  {
-    "text": "Have Spouse",
-    "condition": "haveSpouce",
-    "selected": false,
-    "show": false,
-    "config": true
-  },
-  {
-    "text": "Have Parents",
-    "condition": "haveParents",
-    "selected": false,
-    "show": false,
-    "config": true
-  },
-  {
-    "text": "Is Student",
-    "condition": "student",
-    "selected": false,
-    "show": false,
-    "config": true
-  },
-  {
-    "text": "Listened to Music",
-    "condition": "music",
-    "selected": false,
-    "show": true,
-    "config": false
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
   },
   {
     "text": "Drank Alcohol",
     "condition": "alcohol",
-    "selected": false,
-    "show": true,
-    "config": false
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
   },
   {
-    "text": "Went on Date",
-    "condition": "date",
-    "selected": false,
-    "show": true,
-    "config": false
+    "text": "Gossped/Talked bad about another",
+    "condition": "gossipe",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
   },
   {
-    "text": "Went out with friends / Party",
-    "condition": "party",
-    "selected": false,
-    "show": true,
-    "config": false
+    "text": "Is Sunday or Holy Day",
+    "condition": "sunday",
+    "selected": "FALSE",
+    "show": "FALSE",
+    "config": "FALSE",
+    "order": "1"
   },
   {
-    "text": "Went to Adoration",
-    "condition": "adoration",
-    "selected": false,
-    "show": true,
-    "config": false
+    "text": "Listened to Music",
+    "condition": "music",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
   },
   {
-    "text": "Played Video Games",
-    "condition": "videogames",
-    "selected": false,
-    "show": true,
-    "config": false
+    "text": "Patriated in Argument",
+    "condition": "argued",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
   },
   {
     "text": "Prayed Rosary",
     "condition": "rosary",
-    "selected": false,
-    "show": true,
-    "config": false
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Thought Poorly of Someone",
+    "condition": "thought",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Watched Movies / TV",
+    "condition": "movie",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Went to Confession",
+    "condition": "confession",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Went to Mass",
+    "condition": "mass",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Had sex or thoughts about it",
+    "condition": "sex",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Played Games (Video/Real)",
+    "condition": "games",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Went on Date",
+    "condition": "date",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Went out with friends / Party",
+    "condition": "party",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Went to Adoration",
+    "condition": "adoration",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Went to Funeral",
+    "condition": "funeral",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Voted Today",
+    "condition": "vote",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "100"
+  },
+  {
+    "text": "Is day of fasting/abstain",
+    "condition": "fast",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Missed Daily Pray",
+    "condition": "pray",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Read books / articles",
+    "condition": "book",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Swearing or Foul language",
+    "condition": "swear",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "10"
+  },
+  {
+    "text": "Disrespect or trust in God",
+    "condition": "distrust",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "100"
+  },
+  {
+    "text": "To a lie",
+    "condition": "lie",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Had great food",
+    "condition": "food",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Went shopping",
+    "condition": "shopping",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Went to work",
+    "condition": "work",
+    "selected": "FALSE",
+    "show": "TRUE",
+    "config": "FALSE",
+    "order": "1"
+  },
+  {
+    "text": "Have Kids",
+    "condition": "haveKids",
+    "selected": "FALSE",
+    "show": "FALSE",
+    "config": "TRUE",
+    "order": "1"
+  },
+  {
+    "text": "Have Spouse",
+    "condition": "haveSpouce",
+    "selected": "FALSE",
+    "show": "FALSE",
+    "config": "TRUE",
+    "order": "1"
+  },
+  {
+    "text": "Have Parents",
+    "condition": "haveParents",
+    "selected": "FALSE",
+    "show": "FALSE",
+    "config": "TRUE",
+    "order": "1"
+  },
+  {
+    "text": "Is Student",
+    "condition": "student",
+    "selected": "FALSE",
+    "show": "FALSE",
+    "config": "TRUE",
+    "order": "1"
+  },
+  {
+    "text": "Manager/Boss at work",
+    "condition": "boss",
+    "selected": "FALSE",
+    "show": "FALSE",
+    "config": "TRUE",
+    "order": "1"
   }
 ]

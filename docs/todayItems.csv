@@ -1,20 +1,33 @@
-text,condition,selected,show,config
-Went to Mass,mass,FALSE,TRUE,FALSE
-Went to Confession,confession,FALSE,TRUE,FALSE
-Went to Funeral,funeral,FALSE,TRUE,FALSE
-Voted Today,vote,FALSE,TRUE,FALSE
-Is Sunday or Holy Day,sunday,FALSE,FALSE,FALSE
-Argued with Someone,argument,FALSE,TRUE,FALSE
-Watched Movies / TV,movie,FALSE,TRUE,FALSE
-Had Sex,sex,FALSE,TRUE,FALSE
-Have Kids,haveKids,FALSE,FALSE,TRUE
-Have Spouse,haveSpouce,FALSE,FALSE,TRUE
-Have Parents,haveParents,FALSE,FALSE,TRUE
-Is Student,student,FALSE,FALSE,TRUE
-Listened to Music,music,FALSE,TRUE,FALSE
-Drank Alcohol,alcohol,FALSE,TRUE,FALSE
-Went on Date,date,FALSE,TRUE,FALSE
-Went out with friends / Party,party,FALSE,TRUE,FALSE
-Went to Adoration,adoration,FALSE,TRUE,FALSE
-Played Video Games,videogames,FALSE,TRUE,FALSE
-Prayed Rosary,rosary,FALSE,TRUE,FALSE
+text,condition,selected,show,config,order
+Argued with Someone,argument,FALSE,TRUE,FALSE,1
+Drank Alcohol,alcohol,FALSE,TRUE,FALSE,1
+Gossped/Talked bad about another,gossipe,FALSE,TRUE,FALSE,1
+Is Sunday or Holy Day,sunday,FALSE,FALSE,FALSE,1
+Listened to Music,music,FALSE,TRUE,FALSE,1
+Patriated in Argument,argued,FALSE,TRUE,FALSE,1
+Prayed Rosary,rosary,FALSE,TRUE,FALSE,1
+Thought Poorly of Someone,thought,FALSE,TRUE,FALSE,1
+Watched Movies / TV,movie,FALSE,TRUE,FALSE,1
+Went to Confession,confession,FALSE,TRUE,FALSE,1
+Went to Mass,mass,FALSE,TRUE,FALSE,1
+Had sex or thoughts about it,sex,FALSE,TRUE,FALSE,10
+Played Games (Video/Real),games,FALSE,TRUE,FALSE,10
+Went on Date,date,FALSE,TRUE,FALSE,10
+Went out with friends / Party,party,FALSE,TRUE,FALSE,10
+Went to Adoration,adoration,FALSE,TRUE,FALSE,10
+Went to Funeral,funeral,FALSE,TRUE,FALSE,10
+Voted Today,vote,FALSE,TRUE,FALSE,100
+Is day of fasting/abstain,fast,FALSE,TRUE,FALSE,10
+Missed Daily Pray,pray,FALSE,TRUE,FALSE,1
+Read books / articles,book,FALSE,TRUE,FALSE,1
+Swearing or Foul language,swear,FALSE,TRUE,FALSE,10
+Disrespect or trust in God,distrust,FALSE,TRUE,FALSE,100
+To a lie,lie,FALSE,TRUE,FALSE,1
+Had great food,food,FALSE,TRUE,FALSE,1
+Went shopping,shopping,FALSE,TRUE,FALSE,1
+Went to work,work,FALSE,TRUE,FALSE,1
+Have Kids,haveKids,FALSE,FALSE,TRUE,1
+Have Spouse,haveSpouce,FALSE,FALSE,TRUE,1
+Have Parents,haveParents,FALSE,FALSE,TRUE,1
+Is Student,student,FALSE,FALSE,TRUE,1
+Manager/Boss at work,boss,FALSE,FALSE,TRUE,1
